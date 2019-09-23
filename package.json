@@ -32,6 +32,10 @@
     }
   },
   "lint-staged": {
+    "packages/frontend/*.js": [
+      "eslint --fix",
+      "git add"
+    ],
     "*.{json,md}": [
       "prettier --write",
       "git add"
