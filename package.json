@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/AlexexDenimus/BlackJack",
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
+    "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^6.3.0",
     "eslint-config-react-app": "^5.0.2",
