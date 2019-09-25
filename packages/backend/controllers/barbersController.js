@@ -9,7 +9,7 @@ async function fetchBarbers(req, res, next) {
   try {
     const barbers = await barbersService.fetchBarbers();
 
-    res.json({ barbers });
+    res.json(barbers);
   } catch (error) {
     next(error);
   }

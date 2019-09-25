@@ -6,7 +6,7 @@ const compression = require('compression');
 const bodyParser = require('body-parser');
 const chalk = require('chalk');
 const dotenv = require('dotenv');
-const mongoose = require('mongoose');
+const mongoose = require('./mongoose');
 const expressStatusMonitor = require('express-status-monitor');
 const cors = require('cors');
 
@@ -19,11 +19,6 @@ dotenv.config({ path: '.env.example' });
  * Connect to MongoDB.
  */
 
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
-mongoose.set('useNewUrlParser', true);
-mongoose.connect(process.env.MONGODB_URI);
-require('./models/Barber');
 mongoose.connection.on('error', err => {
   console.error(err);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));

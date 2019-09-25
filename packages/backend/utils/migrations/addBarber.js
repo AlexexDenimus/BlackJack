@@ -1,27 +1,20 @@
-const mongoose = require('mongoose');
+const mongoose = require('../../mongoose');
 
 const BarberModel = mongoose.model('Barber');
 
 const Boris = {
-    name: 'Борис Викторович',
-    socialMedia: {
-        vk: "vk",
-        instagram: "inst",
-        twitter: "twit"
-    },
-    picture: "picture",
-    description: "gg wp",
-    experience: 10
-}
-
+  name: 'Борис Викторович',
+  picture: 'picture',
+  description: 'gg wp',
+};
 (async () => {
-    await BarberModel.insertOne(Boris)
+  await BarberModel.create(Boris)
     .then(() => {
-        console.log('Done');
-      })
-      .catch(error => {
-        console.error(error);
-        process.exitCode = 1;
-      })
-      .finally(() => mongoose.disconnect());
+      console.log('Done');
+    })
+    .catch(error => {
+      console.error(error);
+      process.exitCode = 1;
+    })
+    .finally(() => mongoose.disconnect());
 })();
