@@ -1,9 +1,9 @@
 // @flow
 
-import axios from "axios";
-import type { Axios } from "axios";
-import type { IBarbersHttpClient } from "./IBarbersHttpClient";
-import type { BarbersMapper } from "../barbers/types";
+import axios from 'axios';
+import type { Axios } from 'axios';
+import type { IBarbersHttpClient } from './IBarbersHttpClient';
+import type { BarbersMapper } from '../barbers/types';
 
 export class HttpClient implements IBarbersHttpClient {
   +transport: Axios = axios;
@@ -11,11 +11,9 @@ export class HttpClient implements IBarbersHttpClient {
   async getBarbers(): Promise<BarbersMapper> {
     const response: any = await this.transport.get(`/api/barbers`);
 
-    console.log("me")
+    const { barbers } = response.data;
 
-    const { list } = response.data.barbers;
-
-    return list
+    return barbers;
   }
 }
 

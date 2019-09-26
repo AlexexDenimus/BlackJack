@@ -1,12 +1,12 @@
 // @flow
 
 export type BarberDto = {
-    id: String,
-    picture: String,
-    fullName: String,
-    description: String
-}
+  id: string,
+  picture: string,
+  name: string,
+  description: string,
+};
 
 export type BarbersMapper = {
-        list: BarberDto[]
-}
+  list: BarberDto[],
+};

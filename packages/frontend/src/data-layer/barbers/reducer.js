@@ -6,14 +6,12 @@ import { handleAction } from 'redux-actions';
 import type { SetBarbers } from './actions';
 import type { BarbersMapper } from './types';
 
-export const initialState: BarbersMapper = {
-  list: [],
-};
-
 export const reducer = handleAction(
   '@barbers/SET_BARBERS',
   (state: BarbersMapper, action: SetBarbers) => ({
     list: action.payload,
   }),
-  initialState,
+  {
+    list: [],
+  },
 );

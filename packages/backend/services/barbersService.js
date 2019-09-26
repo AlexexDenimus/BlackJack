@@ -4,12 +4,7 @@ const Barber = mongoose.model('Barber');
 
 const fetchBarber = async publicId => await Barber.findOne({ publicId });
 
-const fetchBarbers = async () => {
-  const barbers = await Barber.find({});
-  return {
-    barbers,
-  };
-};
+const fetchBarbers = async () => await Barber.find({});
 
 const addBarber = async attributes => {
   try {
