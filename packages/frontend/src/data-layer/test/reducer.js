@@ -2,7 +2,7 @@
 
 import { handleActions } from 'redux-actions';
 
-type Counter = {
+export type Counter = {
   number: number,
 };
 

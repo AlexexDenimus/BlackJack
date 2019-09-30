@@ -37,8 +37,6 @@ export const BarbersList = enhance((props: Props) => {
     onFetchBarbers();
   }, [onFetchBarbers]);
 
-  console.log(barbers);
-
   return (
     <Flex>
       {barbers.map(barber => (

@@ -4,14 +4,19 @@
 import { handleAction } from 'redux-actions';
 //import * as actions from './actions';
 import type { SetBarbers } from './actions';
-import type { BarbersMapper } from './types';
+
+type BarbersState = {
+  list: [{ id: string, picture: string, name: string, description: string }],
+};
+
+const initialState: BarbersState = {
+  list: [{ id: '0', picture: '', name: '', description: '' }],
+};
 
 export const reducer = handleAction(
   '@barbers/SET_BARBERS',
-  (state: BarbersMapper, action: SetBarbers) => ({
+  (state: BarbersState, action: SetBarbers) => ({
     list: action.payload,
   }),
-  {
-    list: [],
-  },
+  initialState,
 );

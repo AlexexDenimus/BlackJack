@@ -12,7 +12,7 @@ type Props = {
   onMinusOne: () => void,
 };
 
-function mapDispatchToProps(dispatch: Dispatch<*>) {
+function mapDispatchToProps(dispatch: Dispatch<any>) {
   return {
     onPlusOne: () => dispatch(dispatch(plusOne)),
     onMinusOne: () => dispatch(minusOneAsync()),

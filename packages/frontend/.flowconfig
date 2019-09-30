@@ -1,4 +1,9 @@
 [ignore]
+<PROJECT_ROOT>/node_modules/@babel
+<PROJECT_ROOT>/node_modules/babel-*
+<PROJECT_ROOT>/node_modules/eslint-*
+<PROJECT_ROOT>/node_modules/postcss-*
+<PROJECT_ROOT>/node_modules/lodash
 
 [include]
 
