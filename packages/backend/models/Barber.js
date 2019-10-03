@@ -3,7 +3,10 @@ const createPublicIDPlugin = require('../utils/createPublicIdPlugin');
 
 const barberSchema = new mongoose.Schema(
   {
-    name: String,
+    name: {
+      type: String,
+      required: true,
+    },
     picture: String,
     description: String,
   },

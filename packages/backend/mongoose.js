@@ -10,5 +10,8 @@ mongoose.set('useCreateIndex', true);
 mongoose.set('useNewUrlParser', true);
 mongoose.connect(process.env.MONGODB_URI);
 require('./models/Barber');
+require('./models/User');
+require('./models/Service');
+require('./models/Event');
 
 module.exports = mongoose;
