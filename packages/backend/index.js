@@ -45,6 +45,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const barbers = require('./controllers/barbersController');
 app.use('/api/barbers', barbers);
 
+const services = require('./controllers/servicesController');
+app.use('/api/services', services);
+
+const users = require('./controllers/usersController');
+app.use('/api/users', users);
+
+const events = require('./controllers/eventsController');
+app.use('/api/events', events);
+
 /**
  * Start Express server.
  */
