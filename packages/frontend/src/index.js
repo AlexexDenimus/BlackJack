@@ -5,7 +5,12 @@ import { RootRouter } from './routing/RootRouter';
 import * as serviceWorker from './serviceWorker';
 import store from './store/store';
 
-ReactDOM.render(<Provider store={store}><RootRouter /></Provider>, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <RootRouter />
+  </Provider>,
+  document.getElementById('root'),
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

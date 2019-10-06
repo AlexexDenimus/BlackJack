@@ -9,6 +9,8 @@ import type { ContextRouter } from 'react-router-dom';
 import { App } from './App';
 import { BarbersList } from './barbers/BarbersList';
 import { Test } from './test/Test';
+import { ThemeProvider } from 'styled-components';
+import { theme } from '../ui/theme';
 
 type DefaultRouteProps = {
   path: string,
@@ -25,12 +27,14 @@ const DefaultRoute = ({ path, exact, component: RouteComponent }: DefaultRoutePr
 );
 
 export const RootRouter = () => (
-  <BrowserRouter>
-    <Switch>
-      {/* Put new redesigned routes here */}
-      <DefaultRoute path="/barbers" component={BarbersList} exact />
-      <DefaultRoute path="/" component={App} exact />
-      <DefaultRoute path="/test" component={Test} exact />
-    </Switch>
-  </BrowserRouter>
+  <ThemeProvider theme={theme}>
+    <BrowserRouter>
+      <Switch>
+        {/* Put new redesigned routes here */}
+        <DefaultRoute path="/barbers" component={BarbersList} exact />
+        <DefaultRoute path="/" component={App} exact />
+        <DefaultRoute path="/test" component={Test} exact />
+      </Switch>
+    </BrowserRouter>
+  </ThemeProvider>
 );

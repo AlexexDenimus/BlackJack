@@ -1,3 +1,58 @@
+@font-face {
+  font-family: 'ubuntubold';
+  src: url('./fonts/ubuntu/ubuntu-b.woff2') format('woff2'),
+    url('./fonts/ubuntu/ubuntu-b.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ubuntulight';
+  src: url('./fonts/ubuntu/ubuntu-l.woff2') format('woff2'),
+    url('./fonts/ubuntu/ubuntu-l.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ubuntumedium';
+  src: url('./fonts/ubuntu/ubuntu-m.woff2') format('woff2'),
+    url('./fonts/ubuntu/ubuntu-m.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ubunturegular';
+  src: url('./fonts/ubuntu/ubuntu-r.woff2') format('woff2'),
+    url('./fonts/ubuntu/ubuntu-r.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ubuntuitalic';
+  src: url('./fonts/ubuntu/ubuntu-ri.woff2') format('woff2'),
+    url('./fonts/ubuntu/ubuntu-ri.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'kanyonlight';
+  src: url('./fonts/kanyon/kanyon-light.woff2') format('woff2'),
+    url('./fonts/kanyon/kanyon-light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'kanyonregular';
+  src: url('./fonts/kanyon/kanyon-regular.woff2') format('woff2'),
+    url('./fonts/kanyon/kanyon-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,4 +65,9 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
