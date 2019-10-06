@@ -1,13 +1,20 @@
 import React from 'react';
-import { Admin, Resource, ListGuesser } from 'react-admin';
-import jsonServerProvider from 'ra-data-json-server';
+import { Admin, Resource } from 'react-admin';
+import { UsersList } from './users/UsersList';
 import theme from './theme';
+import authProvider from './core/authProvider';
+import dataProvider from './core/dataProvider';
 
-const dataProvider = jsonServerProvider('http://jsonplaceholder.typicode.com');
+//const dataProvider = jsonServerProvider('http://jsonplaceholder.typicode.com');
 
 const App = () => (
-  <Admin title="BlackJack Admin" dataProvider={dataProvider} theme={theme}>
-    <Resource name="users" list={ListGuesser} />
+  <Admin
+    title="BlackJack Admin"
+    authProvider={authProvider}
+    dataProvider={dataProvider}
+    theme={theme}
+  >
+    <Resource name="users" list={UsersList} />
   </Admin>
 );
 
