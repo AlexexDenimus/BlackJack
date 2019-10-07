@@ -40,13 +40,13 @@ export const App = () => (
           </BodyBold>
         </Box>
         <Box mt="8px" width="440px">
-          <BodyLight letterSpacing={3}>
+          <BodyLight letterSpacing={1}>
             Мы подберем Вам прическу или выполним Вашу. Позаботимся о Вашей бороде. Кальян и Sony
             PlayStation к Вашим услугам. Мы не курим кальян в присутствии детей.
           </BodyLight>
         </Box>
         <Box mt="8px" width="440px">
-          <BodyItalic>
+          <BodyItalic fontSize={3}>
             Мы подберем Вам прическу или выполним Вашу. Позаботимся о Вашей бороде. Кальян и Sony
             PlayStation к Вашим услугам. Мы не курим кальян в присутствии детей.
           </BodyItalic>

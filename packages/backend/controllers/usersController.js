@@ -1,11 +1,13 @@
-const usersService = require('../services/usersService');
 const express = require('express');
+const httpStatus = require('http-status');
+
+const usersService = require('../services/usersService');
 const router = express.Router();
 
 /**
- GET /services
+ GET /users
  */
-async function fetchUsers(req, res, next) {
+async function getUsers(req, res, next) {
   try {
     const users = await usersService.fetchUsers();
 
@@ -16,25 +18,68 @@ async function fetchUsers(req, res, next) {
 }
 
 /**
- GET /barbers/:targetId
+ GET /users/:targetId
  */
 
+async function getUser(req, res, next) {
+  try {
+    const user = await usersService.fetchUser(req.params.publicId);
+
+    res.json(user);
+  } catch (error) {
+    next(error);
+  }
+}
+
 /**
- POST /barbers
+ POST /users
  */
+async function postUser(req, res, next) {
+  try {
+    const user = await usersService.createUser(req.body);
+    res.sendStatus(httpStatus.NO_CONTENT);
+  } catch (error) {
+    next(error);
+  }
+}
 
 /**
  UPDATE /barbers/:targetId
  */
 
+async function updateUser(req, res, next) {
+  try {
+    const user = await usersService.updateUser(req.params.publicId, req.body);
+    res.json(user);
+  } catch (error) {
+    next(error);
+  }
+}
+
 /**
  DELETE /barbers/:targetId
  */
+async function deleteUser(req, res, next) {
+  try {
+    const user = await usersService.deleteUser(req.params.publicId);
+    res.sendStatus(httpStatus.NO_CONTENT);
+  } catch (error) {
+    next(error);
+  }
+}
 
 /**
  * Initialize routes of articles controller.
  */
 
-router.get('/', fetchUsers);
+router.get('/', getUsers);
+
+router.get('/:publicId', getUser);
+
+router.post('/', postUser);
+
+router.put('/:publicId', updateUser);
+
+router.delete('/:publicId', deleteUser);
 
 module.exports = router;

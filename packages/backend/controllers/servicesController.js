@@ -5,7 +5,7 @@ const router = express.Router();
 /**
  GET /services
  */
-async function fetchServices(req, res, next) {
+async function getServices(req, res, next) {
   try {
     const services = await servicesService.fetchServices();
 
@@ -35,6 +35,6 @@ async function fetchServices(req, res, next) {
  * Initialize routes of articles controller.
  */
 
-router.get('/', fetchServices);
+router.get('/', getServices);
 
 module.exports = router;

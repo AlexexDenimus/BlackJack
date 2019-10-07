@@ -5,7 +5,7 @@ const router = express.Router();
 /**
  GET /barbers
  */
-async function fetchBarbers(req, res, next) {
+async function getBarbers(req, res, next) {
   try {
     const barbers = await barbersService.fetchBarbers();
 
@@ -18,7 +18,7 @@ async function fetchBarbers(req, res, next) {
 /**
  GET /barbers/:targetId
  */
-async function fetchBarber(req, res, next) {
+async function getBarber(req, res, next) {
   try {
     const barber = await barbersService.fetchBarber(req.params.publicId);
 
@@ -43,8 +43,8 @@ async function fetchBarber(req, res, next) {
 /**
  * Initialize routes of articles controller.
  */
-router.get('/', fetchBarbers);
+router.get('/', getBarbers);
 
-router.get('/:publicId', fetchBarber);
+router.get('/:publicId', getBarber);
 
 module.exports = router;

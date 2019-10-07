@@ -3,9 +3,9 @@ const express = require('express');
 const router = express.Router();
 
 /**
- GET /services
+ GET /events
  */
-async function fetchEvents(req, res, next) {
+async function getEvents(req, res, next) {
   try {
     const events = await eventsService.fetchEvents();
 
@@ -35,6 +35,6 @@ async function fetchEvents(req, res, next) {
  * Initialize routes of articles controller.
  */
 
-router.get('/', fetchEvents);
+router.get('/', getEvents);
 
 module.exports = router;
