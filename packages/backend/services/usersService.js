@@ -79,6 +79,7 @@ const loginUser = async args => {
     return {
       userId: user.publicId,
       token,
+      role: user.type,
     };
   } catch (err) {
     throw err;
