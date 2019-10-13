@@ -36,7 +36,23 @@ const app = express();
 app.set('host', process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0');
 app.set('port', process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080);
 app.set('view engine', 'pug');
-app.use(cors());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+  );
+  if (req.method === 'OPTIONS') {
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+    );
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH');
+    return res.status(200).json({});
+  }
+  next();
+});
+// app.use(cors());
 app.use(expressStatusMonitor());
 app.use(compression());
 app.use(bodyParser.json());
@@ -53,6 +69,9 @@ app.use('/api/users', users);
 
 const events = require('./controllers/eventsController');
 app.use('/api/events', events);
+
+const auth = require('./controllers/authController');
+app.use('/api/auth', auth);
 
 /**
  * Start Express server.

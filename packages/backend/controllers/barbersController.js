@@ -1,4 +1,5 @@
 const barbersService = require('../services/barbersService');
+const isAuth = require('../utils/middleware/auth');
 const express = require('express');
 const router = express.Router();
 

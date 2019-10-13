@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const User = mongoose.model('User');
 
@@ -43,6 +44,7 @@ const deleteUser = async publicId => {
 const createUser = async args => {
   try {
     const { email, password } = args;
+    console.log(email);
     const user = await User.findOne({ email: email });
     if (user) {
       throw new Error('User exists already!');
@@ -61,8 +63,9 @@ const createUser = async args => {
   }
 };
 
-const loginUser = async (email, password) => {
+const loginUser = async args => {
   try {
+    const { email, password } = args;
     const user = await User.findOne({ email: email });
     if (!user) {
       throw new Error('User does not exist!');
@@ -75,7 +78,7 @@ const loginUser = async (email, password) => {
       expiresIn: '1w',
     });
     return {
-      userId: user.id,
+      userId: user.publicId,
       token,
     };
   } catch (err) {
