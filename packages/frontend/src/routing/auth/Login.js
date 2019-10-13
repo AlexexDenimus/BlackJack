@@ -12,7 +12,7 @@ const Root = styled(Flex)`
   margin: auto;
 `;
 
-const TextField = styled.input`
+export const TextField = styled.input`
   border: 1px solid black;
 `;
 
