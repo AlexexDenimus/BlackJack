@@ -44,7 +44,6 @@ const deleteUser = async publicId => {
 const createUser = async args => {
   try {
     const { email, password } = args;
-    console.log(email);
     const user = await User.findOne({ email: email });
     if (user) {
       throw new Error('User exists already!');

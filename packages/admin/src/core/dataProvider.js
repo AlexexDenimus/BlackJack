@@ -20,7 +20,6 @@ const API_URL = '/api';
  * @returns {Object} { url, options } The HTTP request parameters
  */
 const convertDataProviderRequestToHTTP = (type, resource, params) => {
-  console.log(type);
   switch (type) {
     case GET_LIST: {
       const { page, perPage } = params.pagination;
@@ -79,7 +78,6 @@ const convertDataProviderRequestToHTTP = (type, resource, params) => {
  */
 const convertHTTPResponseToDataProvider = (response, type, resource, params) => {
   const { json } = response;
-  console.log(json[resource]);
   switch (type) {
     case GET_LIST:
       return {

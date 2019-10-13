@@ -15,6 +15,7 @@ import {
   BodyLight,
   Caption,
 } from '../ui/Typography';
+import '../utils/setupAxiosInterceptors';
 
 export const App = () => (
   <div className="App">
