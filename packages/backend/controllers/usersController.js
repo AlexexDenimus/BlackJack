@@ -9,7 +9,7 @@ const router = express.Router();
  */
 async function getUsers(req, res, next) {
   try {
-    const users = await usersService.fetchUsers();
+    const users = await usersService.fetchUsers(req.query);
 
     res.json({ users });
   } catch (error) {

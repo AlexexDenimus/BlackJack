@@ -41,6 +41,7 @@ modules.xml
 
 # Folder config file
 Desktop.ini
+Dockerfile
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/

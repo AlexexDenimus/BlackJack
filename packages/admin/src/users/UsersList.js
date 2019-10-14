@@ -1,7 +1,15 @@
 // @flow
 
 import React from 'react';
-import { List, Datagrid, TextField, EmailField, NumberField } from 'react-admin';
+import {
+  List,
+  Datagrid,
+  TextField,
+  EmailField,
+  NumberField,
+  BooleanField,
+  EditButton,
+} from 'react-admin';
 
 export const UsersList = props => {
   return (
@@ -10,7 +18,8 @@ export const UsersList = props => {
         <TextField source="name" label="Author" width="5rem" sortable={false} />
         <NumberField textAlign="center" source="visits" />
         <EmailField source="email" label="Email" width="10rem" sortable={false} />
-        <TextField source="type" label="Role" sortable={false} />
+        <BooleanField source="premiumUser" label="Premium User" />
+        <EditButton />
       </Datagrid>
     </List>
   );

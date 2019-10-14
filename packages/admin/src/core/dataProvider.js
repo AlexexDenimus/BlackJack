@@ -23,16 +23,17 @@ const convertDataProviderRequestToHTTP = (type, resource, params) => {
   switch (type) {
     case GET_LIST: {
       const { page, perPage } = params.pagination;
-      const { field, order } = params.sort;
       const query = {
-        sort: JSON.stringify([field, order]),
+        sort: params.sort.field,
+        order: params.sort.order,
         range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
         filter: JSON.stringify(params.filter),
       };
       return { url: `${API_URL}/${resource}?${stringify(query)}` };
     }
-    case GET_ONE:
-      return { url: `${API_URL}/${resource}/${params.publicId}` };
+    case GET_ONE: {
+      return { url: `${API_URL}/${resource}/${params.id}` };
+    }
     case GET_MANY: {
       const query = {
         filter: JSON.stringify({ id: params.ids }),
@@ -41,9 +42,9 @@ const convertDataProviderRequestToHTTP = (type, resource, params) => {
     }
     case GET_MANY_REFERENCE: {
       const { page, perPage } = params.pagination;
-      const { field, order } = params.sort;
       const query = {
-        sort: JSON.stringify([field, order]),
+        sort: JSON.stringify(params.sort.field),
+        order: JSON.stringify(params.sort.order),
         range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
         filter: JSON.stringify({ ...params.filter, [params.target]: params.id }),
       };
@@ -87,7 +88,7 @@ const convertHTTPResponseToDataProvider = (response, type, resource, params) => 
     case CREATE:
       return { data: { ...params.data, id: json[resource].id } };
     default:
-      return { data: json[resource] };
+      return { data: { ...json, id: json.publicId } };
   }
 };
 

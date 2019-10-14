@@ -1,22 +1,38 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const set = require('lodash/set');
 
 const User = mongoose.model('User');
 
-const fetchUsers = async () =>
-  await User.find({}).populate({
-    path: 'createdEvents',
-    select: 'status barber service date publicId',
-    populate: [{ path: 'barber', select: 'name' }, { path: 'service', select: 'name price' }],
-  });
+const fetchUsers = async query => {
+  const sort = query.sort ? query.sort : 'visits';
+  const order = query.order ? query.order : 'DESC';
+  const sortType = [sort, order];
+  return await User.find({})
+    .populate({
+      path: 'createdEvents',
+      select: 'status barber service date publicId',
+      populate: [{ path: 'barber', select: 'name' }, { path: 'service', select: 'name price' }],
+    })
+    .sort([sortType]);
+};
 
-const fetchUser = async publicId =>
-  await User.findOne({ publicId }).populate({
+const fetchUser = async id => {
+  const user = await User.findOne({ publicId: id });
+  if (!user) {
+    return await User.findById(id).populate({
+      path: 'createdEvents',
+      select: 'status barber service date publicId',
+      populate: [{ path: 'barber', select: 'name' }, { path: 'service', select: 'name price' }],
+    });
+  }
+  return user.populate({
     path: 'createdEvents',
     select: 'status barber service date publicId',
     populate: [{ path: 'barber', select: 'name' }, { path: 'service', select: 'name price' }],
   });
+};
 
 const updateUser = async (publicId, args) => {
   try {

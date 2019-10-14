@@ -36,6 +36,7 @@ const app = express();
 app.set('host', process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0');
 app.set('port', process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080);
 app.set('view engine', 'pug');
+app.use(cors());
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
@@ -52,7 +53,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-// app.use(cors());
 app.use(expressStatusMonitor());
 app.use(compression());
 app.use(bodyParser.json());
