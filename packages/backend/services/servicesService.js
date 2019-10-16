@@ -21,7 +21,7 @@ const updateService = async (id, args) => {
     const { price, name } = args;
     const service = await findById(Service, id);
     service.name = name ? name : service.name;
-    service.price = price ? price : user.price;
+    service.price = price ? price : service.price;
     const newService = await service.save();
     return newService;
   } catch (err) {
@@ -40,7 +40,6 @@ const deleteService = async id => {
 
 const createService = async args => {
   try {
-    console.log(args);
     const { name, price } = args;
     const service = await Service.findOne({ name });
     if (service) {
@@ -51,9 +50,7 @@ const createService = async args => {
       price: price,
     });
     const result = await newService.save();
-    return {
-      result,
-    };
+    return result;
   } catch (err) {
     throw err;
   }

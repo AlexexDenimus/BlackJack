@@ -65,9 +65,7 @@ const createUser = async args => {
       password: hashedPassword,
     });
     const result = await newUser.save();
-    return {
-      result,
-    };
+    return result;
   } catch (err) {
     throw err;
   }

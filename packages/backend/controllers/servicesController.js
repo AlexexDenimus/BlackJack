@@ -49,7 +49,7 @@ async function postService(req, res, next) {
  UPDATE /service/:targetId
  */
 
-async function updateService(req, res, next) {
+async function putService(req, res, next) {
   try {
     const service = await servicesService.updateService(req.params.publicId, req.body);
     res.json(service);
@@ -81,7 +81,7 @@ router.get('/:publicId', getService);
 
 router.post('/', postService);
 
-router.put('/:publicId', updateService);
+router.put('/:publicId', putService);
 
 router.delete('/:publicId', deleteService);
 

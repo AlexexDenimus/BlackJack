@@ -1,20 +1,64 @@
 const mongoose = require('mongoose');
+const findById = require('../utils/core/findById');
 
 const Barber = mongoose.model('Barber');
 
-const fetchBarber = async publicId => await Barber.findOne({ publicId });
+const fetchBarber = async id => {
+  const barber = await findById(Barber, id);
 
-const fetchBarbers = async () => await Barber.find({});
+  return barber;
+};
 
-const addBarber = async attributes => {
+const fetchBarbers = async query => {
+  const sort = query.sort ? query.sort : 'name';
+  const order = query.order ? query.order : 'DESC';
+  const sortType = [sort, order];
+  return await Barber.find({}).sort([sortType]);
+};
+
+const createBarber = async args => {
   try {
-    await Barber.create(attributes);
+    const { name, description, picture } = args;
+    const newBarber = await Barber.create({
+      name: name,
+      description: description,
+      picture: picture,
+    });
+    const result = await newBarber.save();
+    return result;
   } catch (error) {
     throw error;
+  }
+};
+
+const deleteBarber = async id => {
+  try {
+    const barber = await findById(Barber, id);
+
+    return await Barber.findByIdAndDelete(barber._id);
+  } catch (err) {
+    throw err;
+  }
+};
+
+const updateBarber = async (id, args) => {
+  try {
+    const { name, picture, description } = args;
+    const barber = await findById(Barber, id);
+    barber.name = name ? name : barber.name;
+    barber.description = description ? description : barber.description;
+    barber.picture = picture ? picture : barber.picture;
+    const newBarber = await barber.save();
+    return newBarber;
+  } catch (err) {
+    throw err;
   }
 };
 
 module.exports = {
   fetchBarbers,
   fetchBarber,
+  createBarber,
+  deleteBarber,
+  updateBarber,
 };

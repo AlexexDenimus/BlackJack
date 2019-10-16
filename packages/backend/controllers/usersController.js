@@ -47,7 +47,7 @@ async function postUser(req, res, next) {
  UPDATE /barbers/:targetId
  */
 
-async function updateUser(req, res, next) {
+async function putUser(req, res, next) {
   try {
     const user = await usersService.updateUser(req.params.publicId, req.body);
     res.json(user);
@@ -78,7 +78,7 @@ router.get('/:publicId', getUser);
 
 router.post('/', postUser);
 
-router.put('/:publicId', updateUser);
+router.put('/:publicId', putUser);
 
 router.delete('/:publicId', deleteUser);
 

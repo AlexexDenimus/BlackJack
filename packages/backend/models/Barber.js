@@ -13,7 +13,6 @@ const barberSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-barberSchema.index({ name: 1 });
 barberSchema.plugin(createPublicIDPlugin);
 
 module.exports = mongoose.model('Barber', barberSchema);
