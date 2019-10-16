@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const set = require('lodash/set');
+const findById = require('../utils/core/findById');
 
 const User = mongoose.model('User');
 
@@ -19,14 +20,8 @@ const fetchUsers = async query => {
 };
 
 const fetchUser = async id => {
-  const user = await User.findOne({ publicId: id });
-  if (!user) {
-    return await User.findById(id).populate({
-      path: 'createdEvents',
-      select: 'status barber service date publicId',
-      populate: [{ path: 'barber', select: 'name' }, { path: 'service', select: 'name price' }],
-    });
-  }
+  const user = await findById(User, id);
+
   return user.populate({
     path: 'createdEvents',
     select: 'status barber service date publicId',
@@ -37,7 +32,7 @@ const fetchUser = async id => {
 const updateUser = async (publicId, args) => {
   try {
     const { name, visits, premiumUser } = args;
-    const user = await User.findOne({ publicId });
+    const user = await findById(User, id);
     user.name = name ? name : user.name;
     user.visits = visits ? visits : user.visits;
     user.premiumUser = premiumUser ? premiumUser : user.premiumUser;
@@ -48,10 +43,10 @@ const updateUser = async (publicId, args) => {
   }
 };
 
-const deleteUser = async publicId => {
+const deleteUser = async id => {
   try {
-    const user = await User.findOneAndDelete({ publicId });
-    return user;
+    const user = await findById(User, id);
+    return await User.findByIdAndDelete(user._id);
   } catch (err) {
     throw err;
   }

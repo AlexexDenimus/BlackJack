@@ -79,6 +79,7 @@ const convertDataProviderRequestToHTTP = (type, resource, params) => {
  */
 const convertHTTPResponseToDataProvider = (response, type, resource, params) => {
   const { json } = response;
+  console.log(params.data);
   switch (type) {
     case GET_LIST:
       return {
@@ -86,9 +87,9 @@ const convertHTTPResponseToDataProvider = (response, type, resource, params) => 
         total: json[resource].length,
       };
     case CREATE:
-      return { data: { ...params.data, id: json[resource].id } };
+      return { data: { ...params.data, id: 1 } };
     default:
-      return { data: { ...json, id: json.publicId } };
+      return { data: { ...json, id: json ? json.publicId : 1 } };
   }
 };
 

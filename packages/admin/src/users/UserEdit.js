@@ -2,7 +2,7 @@ import React from 'react';
 import { Edit, SimpleForm, DisabledInput, TextInput, BooleanInput, NumberInput } from 'react-admin';
 
 export const UserEdit = props => (
-  <Edit {...props} title="User data">
+  <Edit {...props} title="User info">
     <SimpleForm>
       <TextInput source="name" label="Author" />
       <DisabledInput source="email" label="Email" />
