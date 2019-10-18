@@ -8,9 +8,12 @@ const checkAdmin = async (email, password) => {
   });
   const role = response.data.role;
   if (role !== 'admin') {
-    return false;
+    return { status: false };
   }
-  return true;
+  return {
+    status: true,
+    token: response.data.token,
+  };
 };
 
 const checkAdminEmail = email => {
@@ -24,16 +27,18 @@ export default async (type, params) => {
   // called when the user attempts to log in
   if (type === AUTH_LOGIN) {
     const { username, password } = params;
-    localStorage.setItem('username', username);
-    const isAdmin = await checkAdmin(username, password);
-    if (!isAdmin) {
+    const admin = await checkAdmin(username, password);
+    if (!admin.status) {
       return Promise.reject();
     }
+    localStorage.setItem('username', username);
+    localStorage.setItem('token', admin.token);
     return Promise.resolve();
   }
   // called when the user clicks on the logout button
   if (type === AUTH_LOGOUT) {
     localStorage.removeItem('username');
+    localStorage.removeItem('token');
     return Promise.resolve();
   }
   // called when the API returns an error
@@ -41,6 +46,7 @@ export default async (type, params) => {
     const { status } = params;
     if (status === 401 || status === 403) {
       localStorage.removeItem('username');
+      localStorage.removeItem('token');
       return Promise.reject();
     }
     return Promise.resolve();
