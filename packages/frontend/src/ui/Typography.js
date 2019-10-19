@@ -39,16 +39,16 @@ const Header = styled(Text).attrs({
 
 export const Header1 = styled(Header).attrs({
   as: 'h1',
-  fontSize: 7,
+  fontSize: 8,
 })``;
 
 export const Header2 = styled(Header).attrs({
   as: 'h2',
-  fontSize: 6,
+  fontSize: 7,
 })``;
 export const Header3 = styled(Header).attrs({
   as: 'h3',
-  fontSize: 5,
+  fontSize: 6,
 })``;
 export const Header4 = styled(Header).attrs({
   as: 'h4',
@@ -71,7 +71,7 @@ export const Body = styled(Text).attrs({
 `;
 
 Body.defaultProps = {
-  fontSize: 3,
+  fontSize: 5,
 };
 
 export const BodyBold = styled(Text).attrs({
@@ -81,7 +81,7 @@ export const BodyBold = styled(Text).attrs({
 `;
 
 BodyBold.defaultProps = {
-  fontSize: 3,
+  fontSize: 5,
 };
 
 export const BodyLight = styled(Text).attrs({
@@ -91,7 +91,7 @@ export const BodyLight = styled(Text).attrs({
 `;
 
 BodyLight.defaultProps = {
-  fontSize: 3,
+  fontSize: 5,
 };
 
 export const BodyItalic = styled(Text)`
