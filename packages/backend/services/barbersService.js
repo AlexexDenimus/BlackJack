@@ -19,10 +19,15 @@ const fetchBarbers = async query => {
 const createBarber = async args => {
   try {
     const { name, description, picture } = args;
+
     const newBarber = await Barber.create({
       name: name,
       description: description,
-      picture: picture,
+      picture: {
+        src: picture.src,
+        alt: picture.name,
+        mimetype: picture.type,
+      },
     });
     const result = await newBarber.save();
     return result;
@@ -47,7 +52,9 @@ const updateBarber = async (id, args) => {
     const barber = await findById(Barber, id);
     barber.name = name ? name : barber.name;
     barber.description = description ? description : barber.description;
-    barber.picture = picture ? picture : barber.picture;
+    barber.picture = picture
+      ? { alt: picture.name, mimetype: picture.type, src: picture.src }
+      : barber.picture;
     const newBarber = await barber.save();
     return newBarber;
   } catch (err) {

@@ -29,7 +29,7 @@ const fetchUser = async id => {
   });
 };
 
-const updateUser = async (publicId, args) => {
+const updateUser = async (id, args) => {
   try {
     const { name, visits, premiumUser } = args;
     const user = await findById(User, id);

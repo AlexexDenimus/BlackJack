@@ -5,8 +5,6 @@ import type { ComponentType } from 'react';
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 import type { ContextRouter } from 'react-router-dom';
 import { withCookies } from 'react-cookie';
-//import { ConnectedRouter } from 'react-router-redux';
-//import history from './history';
 import { App } from './App';
 import { BarbersList } from './barbers/BarbersList';
 import { Test } from './test/Test';

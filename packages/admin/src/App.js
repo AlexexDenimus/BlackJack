@@ -13,16 +13,19 @@ import { EventEdit } from './events/EventEdit';
 import theme from './theme';
 import authProvider from './core/authProvider';
 import dataProvider from './core/dataProvider';
+import addUploadFeature from './core/addUploadFeature';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import CreateIcon from '@material-ui/icons/Create';
 import FaceIcon from '@material-ui/icons/Face';
 import BookIcon from '@material-ui/icons/Book';
 
+const uploadCapableDataProvider = addUploadFeature(dataProvider);
+
 const App = () => (
   <Admin
     title="BlackJack Admin"
     authProvider={authProvider}
-    dataProvider={dataProvider}
+    dataProvider={uploadCapableDataProvider}
     theme={theme}
   >
     <Resource name="events" list={EventsList} edit={EventEdit} icon={BookIcon} />

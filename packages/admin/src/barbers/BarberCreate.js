@@ -7,7 +7,7 @@ export const BarberCreate = props => (
       <TextInput source="name" label="Barber name" />
       <LongTextInput source="description" label="Description" resettable />
       <ImageInput source="picture" label="Pictures" accept="image/*">
-        <ImageField source="picture" title="name" />
+        <ImageField source="src" title="alt" />
       </ImageInput>
     </SimpleForm>
   </Create>

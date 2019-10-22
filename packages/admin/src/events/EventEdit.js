@@ -9,7 +9,7 @@ import {
 } from 'react-admin';
 
 export const EventEdit = props => (
-  <Edit {...props} title="Event info">
+  <Edit {...props} title="Event info" hasDelete={false}>
     <SimpleForm>
       <DisabledInput source="user.name" label="User name" />
       <DisabledInput source="user.email" label="User email" />

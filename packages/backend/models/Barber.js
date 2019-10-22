@@ -7,7 +7,11 @@ const barberSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    picture: String,
+    picture: {
+      mimetype: String,
+      src: String,
+      alt: String,
+    },
     description: String,
   },
   { timestamps: true },
