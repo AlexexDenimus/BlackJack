@@ -27,6 +27,8 @@ const DefaultRoute = ({ path, exact, component: RouteComponent }: DefaultRoutePr
   />
 );
 
+const Empty = () => <div>Empty space</div>;
+
 export const RootRouter = withCookies((props: any) => {
   const { allCookies } = props;
   return (
@@ -41,6 +43,7 @@ export const RootRouter = withCookies((props: any) => {
           <DefaultRoute path="/login" component={Login} exact />
           {allCookies.token && <Redirect from="/signup" to="/" exact />}
           <DefaultRoute path="/signup" component={SignUp} exact />
+          <Route path="*" component={Empty} />
         </Switch>
       </BrowserRouter>
     </ThemeProvider>

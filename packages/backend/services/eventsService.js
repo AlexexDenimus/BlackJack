@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const findById = require('../utils/core/findById');
 const adminCheck = require('../utils/core/adminCheck');
+const fetchQuery = require('../utils/core/fetchQuery');
 
 const Event = mongoose.model('Event');
 const Service = mongoose.model('Service');
@@ -8,10 +9,8 @@ const Barber = mongoose.model('Barber');
 const User = mongoose.model('User');
 
 const fetchEvents = async query => {
-  const sort = query.sort ? query.sort : 'date';
-  const order = query.order ? query.order : 'DESC';
-  const sortType = [sort, order];
-  return await Event.find({})
+  const { filter, sortType } = fetchQuery(query);
+  return await Event.find(filter)
     .populate({ path: 'user', select: 'name email publicId' })
     .populate({ path: 'barber', select: 'name publicId' })
     .populate({ path: 'service', select: 'name price publicId' })

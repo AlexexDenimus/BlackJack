@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const findById = require('../utils/core/findById');
+const fetchQuery = require('../utils/core/fetchQuery');
 
 const Barber = mongoose.model('Barber');
 
@@ -10,10 +11,8 @@ const fetchBarber = async id => {
 };
 
 const fetchBarbers = async query => {
-  const sort = query.sort ? query.sort : 'name';
-  const order = query.order ? query.order : 'DESC';
-  const sortType = [sort, order];
-  return await Barber.find({}).sort([sortType]);
+  const { filter, sortType } = fetchQuery(query);
+  return await Barber.find(filter).sort([sortType]);
 };
 
 const createBarber = async args => {
@@ -48,6 +47,7 @@ const deleteBarber = async id => {
 
 const updateBarber = async (id, args) => {
   try {
+    console.log(id, args);
     const { name, picture, description } = args;
     const barber = await findById(Barber, id);
     barber.name = name ? name : barber.name;

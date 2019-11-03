@@ -1,9 +1,10 @@
 import React from 'react';
 import { List, Datagrid, TextField, NumberField, EditButton, DeleteButton } from 'react-admin';
+import { ServicesFilter } from './ServicesFilter';
 
 export const ServicesList = props => {
   return (
-    <List {...props}>
+    <List filters={<ServicesFilter />} {...props}>
       <Datagrid>
         <TextField source="name" label="Service" />
         <NumberField textAlign="center" source="price" label="Price" />

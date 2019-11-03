@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 const findById = require('../utils/core/findById');
+const fetchQuery = require('../utils/core/fetchQuery');
 
 const Service = mongoose.model('Service');
 
 const fetchServices = async query => {
-  const sort = query.sort ? query.sort : 'price';
-  const order = query.order ? query.order : 'DESC';
-  const sortType = [sort, order];
-  return await Service.find({}).sort([sortType]);
+  const { filter, sortType } = fetchQuery(query);
+  return await Service.find(filter).sort([sortType]);
 };
 
 const fetchService = async id => {

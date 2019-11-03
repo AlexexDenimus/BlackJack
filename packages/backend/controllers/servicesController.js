@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const express = require('express');
 const httpStatus = require('http-status');
 
@@ -25,7 +26,7 @@ async function getService(req, res, next) {
   try {
     const service = await servicesService.fetchService(req.params.publicId);
 
-    res.json(service);
+    res.json(_.isArray(service) ? service[0] : service);
   } catch (err) {
     next(err);
   }
@@ -50,6 +51,7 @@ async function postService(req, res, next) {
  */
 
 async function putService(req, res, next) {
+  console.log(req.body);
   try {
     const service = await servicesService.updateService(req.params.publicId, req.body);
     res.json(service);

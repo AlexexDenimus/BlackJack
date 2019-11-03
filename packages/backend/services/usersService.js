@@ -3,14 +3,13 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const set = require('lodash/set');
 const findById = require('../utils/core/findById');
+const fetchQuery = require('../utils/core/fetchQuery');
 
 const User = mongoose.model('User');
 
 const fetchUsers = async query => {
-  const sort = query.sort ? query.sort : 'visits';
-  const order = query.order ? query.order : 'DESC';
-  const sortType = [sort, order];
-  return await User.find({})
+  const { filter, sortType } = fetchQuery(query);
+  return await User.find(filter)
     .populate({
       path: 'createdEvents',
       select: 'status barber service date publicId',

@@ -8,10 +8,11 @@ import {
   BooleanField,
   EditButton,
 } from 'react-admin';
+import { UsersFilter } from './UsersFilter';
 
 export const UsersList = props => {
   return (
-    <List {...props}>
+    <List filters={<UsersFilter />} {...props}>
       <Datagrid>
         <TextField source="name" label="Author" width="5rem" sortable={false} />
         <NumberField textAlign="center" source="visits" />

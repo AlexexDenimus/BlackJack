@@ -79,6 +79,7 @@ const convertDataProviderRequestToHTTP = (type, resource, params) => {
  */
 const convertHTTPResponseToDataProvider = (response, type, resource, params) => {
   const { json } = response;
+  console.log(json);
   switch (type) {
     case GET_LIST:
       return {
@@ -103,9 +104,11 @@ const convertHTTPResponseToDataProvider = (response, type, resource, params) => 
  * @returns {Promise} the Promise for response
  */
 export default (type, resource, params) => {
+  console.log(type, resource, params);
   const accessToken = localStorage.getItem('token');
   const { fetchJson } = fetchUtils;
   const { url, options } = convertDataProviderRequestToHTTP(type, resource, params);
+  console.log(url);
   if (accessToken && options) {
     if (!options.headers) {
       options.headers = new Headers({ Accept: 'application/json' });

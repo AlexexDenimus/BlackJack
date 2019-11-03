@@ -1,13 +1,13 @@
 module.exports = async function findById(model, id) {
+  if (id === '1') {
+    return undefined;
+  }
+
   const value = await model.findOne({ publicId: id });
 
   if (!value) {
-    // try {
-      const result = await model.findById(id);
-      return result;
-    // } catch (err) {
-    //   return await model.findOne();
-    // }
+    const result = await model.findById(id);
+    return result;
   }
 
   return value;
