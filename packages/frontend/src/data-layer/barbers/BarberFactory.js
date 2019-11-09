@@ -7,5 +7,7 @@ export default Factory.define('BarberFactory').attrs({
   id: faker.random.uuid,
   name: faker.name.findName,
   description: faker.lorem.paragraph,
-  picture: faker.image.imageUrl,
+  picture: {
+    src: faker.image.imageUrl,
+  },
 });

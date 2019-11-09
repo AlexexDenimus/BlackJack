@@ -2,7 +2,11 @@
 
 export type BarberDto = {
   id: string,
-  picture: string,
+  picture: {
+    src: string,
+    alt: string,
+    mimetype: string,
+  },
   name: string,
   description: string,
 };

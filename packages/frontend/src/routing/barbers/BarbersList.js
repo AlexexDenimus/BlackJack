@@ -6,11 +6,8 @@ import type { Dispatch } from 'redux';
 import type { BarberDto } from '../../data-layer/barbers/types';
 import { Flex } from 'grid-styled';
 import { BarberCard } from '../../ui/barbers/BarberCard';
-import BarberFactory from '../../data-layer/barbers/BarberFactory';
 import { selectBarbers } from '../../data-layer/barbers/selectors';
 import { fetchBarbersAsync } from '../../data-layer/barbers/actions';
-
-const account = BarberFactory.build();
 
 type Props = {
   barbers: BarberDto[],
@@ -43,7 +40,7 @@ export const BarbersList = enhance((props: Props) => {
         <BarberCard
           key={barber.name}
           name={barber.name}
-          picture={account.picture}
+          picture={barber.picture.src}
           description={barber.description}
         />
       ))}
