@@ -19,11 +19,21 @@ export class HttpClient implements IBarbersHttpClient, IAuthHttpClient {
   }
 
   async signUpUser(payload: AuthForm): Promise<void> {
-    const { email, password } = payload;
-    await this.transport.post('/api/users', {
-      email,
-      password,
-    });
+    const { email, password, registrationType, publicId } = payload;
+
+    const args = registrationType
+      ? {
+          email,
+          password,
+          registrationType,
+          publicId,
+        }
+      : {
+          email,
+          password,
+        };
+
+    await this.transport.post('/api/users', args);
 
     return;
   }

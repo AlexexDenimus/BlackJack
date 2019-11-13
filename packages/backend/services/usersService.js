@@ -53,16 +53,29 @@ const deleteUser = async id => {
 
 const createUser = async args => {
   try {
-    const { email, password } = args;
+    const { email, password, registrationType, publicId } = args;
     const user = await User.findOne({ email: email });
+
     if (user) {
-      throw new Error('User exists already!');
+      if (user.registrationType !== 'google' && user.registrationType !== 'vk') {
+        throw new Error('User exists already!');
+      }
+      return;
     }
+
     const hashedPassword = await bcrypt.hash(password, 12);
-    const newUser = new User({
-      email: email,
-      password: hashedPassword,
-    });
+    const newUser = registrationType
+      ? new User({
+          email: email,
+          registrationType: registrationType,
+          password: hashedPassword,
+          publicId: publicId,
+        })
+      : new User({
+          email: email,
+          password: hashedPassword,
+        });
+
     const result = await newUser.save();
     return result;
   } catch (err) {

@@ -34,6 +34,11 @@ const userSchema = new mongoose.Schema(
       enum: ['member', 'admin'],
       default: 'member',
     },
+    registrationType: {
+      type: String,
+      enum: ['default', 'google', 'vk'],
+      default: 'default',
+    },
     createdEvents: [
       {
         type: mongoose.Schema.Types.ObjectId,
