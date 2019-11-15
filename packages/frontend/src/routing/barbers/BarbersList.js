@@ -34,7 +34,9 @@ export const BarbersList = enhance((props: Props) => {
     onFetchBarbers();
   }, [onFetchBarbers]);
 
-  return (
+  return barbers[0].name === '' ? (
+    <h1>Loading</h1>
+  ) : (
     <Flex>
       {barbers.map(barber => (
         <BarberCard

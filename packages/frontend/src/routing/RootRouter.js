@@ -7,6 +7,7 @@ import type { ContextRouter } from 'react-router-dom';
 import { withCookies } from 'react-cookie';
 import { App } from './App';
 import { BarbersList } from './barbers/BarbersList';
+import { ServicesList } from './services/ServicesList';
 import { Test } from './test/Test';
 import { Login } from './auth/Login';
 import { SignUp } from './auth/SignUp';
@@ -35,7 +36,8 @@ export const RootRouter = withCookies((props: any) => {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Switch>
-          {/* Put new redesigned routes here */}
+          {/* Put new routes here */}
+          <DefaultRoute path="/services" component={ServicesList} exact />
           <DefaultRoute path="/barbers" component={BarbersList} exact />
           <DefaultRoute path="/" component={App} exact />
           <DefaultRoute path="/test" component={Test} exact />

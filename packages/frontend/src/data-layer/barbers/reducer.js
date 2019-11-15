@@ -1,8 +1,8 @@
 // @flow
 
-//import produce from 'immer';
+import produce from 'immer';
 import { handleAction } from 'redux-actions';
-//import * as actions from './actions';
+import * as actions from './actions';
 import type { SetBarbers } from './actions';
 
 type BarbersState = {
@@ -21,9 +21,10 @@ const initialState: BarbersState = {
 };
 
 export const reducer = handleAction(
-  '@barbers/SET_BARBERS',
-  (state: BarbersState, action: SetBarbers) => ({
-    list: action.payload,
-  }),
+  actions.setBarbers.toString(),
+  (state: BarbersState, action: SetBarbers) =>
+    produce(state, draft => {
+      draft.list = action.payload;
+    }),
   initialState,
 );
