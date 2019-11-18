@@ -9,6 +9,7 @@ export type BarberDto = {
   },
   name: string,
   description: string,
+  publicId: string,
 };
 
 export type BarbersMapper = {

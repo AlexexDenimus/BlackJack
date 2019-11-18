@@ -31,6 +31,16 @@ async function getUser(req, res, next) {
   }
 }
 
+async function getUserWithEvents(req, res, next) {
+  try {
+    const user = await usersService.fetchUserWithEvents(req.params.publicId);
+
+    res.json(user);
+  } catch (error) {
+    next(error);
+  }
+}
+
 /**
  POST /users
  */
@@ -75,6 +85,8 @@ async function deleteUser(req, res, next) {
 router.get('/', getUsers);
 
 router.get('/:publicId', getUser);
+
+router.get('/:publicId/events', getUserWithEvents);
 
 router.post('/', postUser);
 

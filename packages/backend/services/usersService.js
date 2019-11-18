@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const set = require('lodash/set');
+const _ = require('lodash');
 const findById = require('../utils/core/findById');
 const fetchQuery = require('../utils/core/fetchQuery');
 
@@ -21,6 +21,12 @@ const fetchUsers = async query => {
 const fetchUser = async id => {
   const user = await findById(User, id);
 
+  return _.pick(user, ['name', 'visits', 'premiumUser', 'email', 'publicId']);
+};
+
+fetchUserWithEvents = async id => {
+  const user = await findById(User, id);
+
   return user.populate({
     path: 'createdEvents',
     select: 'status barber service date publicId',
@@ -30,10 +36,11 @@ const fetchUser = async id => {
 
 const updateUser = async (id, args) => {
   try {
-    const { name, visits, premiumUser } = args;
+    const { name, visits, premiumUser, phoneNumber } = args;
     const user = await findById(User, id);
     user.name = name ? name : user.name;
     user.visits = visits ? visits : user.visits;
+    user.phoneNumber = phoneNumber ? phoneNumber : user.phoneNumber;
     user.premiumUser = premiumUser ? premiumUser : user.premiumUser;
     const newUser = await user.save();
     return newUser;
@@ -113,5 +120,6 @@ module.exports = {
   loginUser,
   updateUser,
   fetchUser,
+  fetchUserWithEvents,
   deleteUser,
 };

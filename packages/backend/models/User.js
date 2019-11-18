@@ -17,6 +17,15 @@ const userSchema = new mongoose.Schema(
         },
       ],
     },
+    phoneNumber: {
+      type: String,
+      validate: [
+        {
+          validator: value => /^((\+7)+([0-9]){10})$/.test(value),
+          msg: 'Format: +7-(999)-999-99-99',
+        },
+      ],
+    },
     password: {
       type: String,
       required: true,

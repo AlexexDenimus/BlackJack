@@ -23,15 +23,15 @@ const fetchEvent = async id => {
 };
 
 const createEvent = async (args, user) => {
-  const { date, service, barber } = args;
+  const { date, serviceId, barberId } = args;
 
-  const existingService = await Service.findById({ _id: service });
+  const existingService = await findById(Service, serviceId);
 
   if (!existingService) {
     throw new Error('Service is not exist!');
   }
 
-  const existingBarber = await Barber.findById({ _id: barber });
+  const existingBarber = await findById(Barber, barberId);
 
   if (!existingBarber) {
     throw new Error('Barber is not exist!');

@@ -8,6 +8,7 @@ import { withCookies } from 'react-cookie';
 import { App } from './App';
 import { BarbersList } from './barbers/BarbersList';
 import { ServicesList } from './services/ServicesList';
+import { CreateEventForm } from './events/CreateEventForm';
 import { Test } from './test/Test';
 import { Login } from './auth/Login';
 import { SignUp } from './auth/SignUp';
@@ -37,6 +38,7 @@ export const RootRouter = withCookies((props: any) => {
       <BrowserRouter>
         <Switch>
           {/* Put new routes here */}
+          <DefaultRoute path="/booking" component={CreateEventForm} exact />
           <DefaultRoute path="/services" component={ServicesList} exact />
           <DefaultRoute path="/barbers" component={BarbersList} exact />
           <DefaultRoute path="/" component={App} exact />
