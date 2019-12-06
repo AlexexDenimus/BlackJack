@@ -1,5 +1,6 @@
 import React from 'react';
 import { Admin, Resource } from 'react-admin';
+import Dashboard from './core/Dashboard';
 import { UsersList } from './users/UsersList';
 import { UserEdit } from './users/UserEdit';
 import { ServicesList } from './services/ServicesList';
@@ -27,6 +28,7 @@ const App = () => (
     authProvider={authProvider}
     dataProvider={uploadCapableDataProvider}
     theme={theme}
+    dashboard={Dashboard}
   >
     <Resource name="events" list={EventsList} edit={EventEdit} icon={BookIcon} />
     <Resource name="users" list={UsersList} edit={UserEdit} icon={AccountBoxIcon} />

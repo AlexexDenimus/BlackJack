@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const findById = require('../utils/core/findById');
 const adminCheck = require('../utils/core/adminCheck');
 const fetchQuery = require('../utils/core/fetchQuery');
+const createVisitOnDone = require('../utils/support/createVisitOnDone');
 
 const Event = mongoose.model('Event');
 const Service = mongoose.model('Service');
@@ -71,7 +72,7 @@ const updateEvent = async (id, args, user) => {
     event.service = service ? service : event.service;
     event.barber = barber ? barber : event.barber;
     event.date = date ? date : event.date;
-    event.status = status ? status : event.status;
+    event.status = status ? await createVisitOnDone(status, event.user, User) : event.status;
     const newEvent = await event.save();
     return newEvent;
   } catch (err) {

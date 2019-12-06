@@ -51,7 +51,6 @@ async function postService(req, res, next) {
  */
 
 async function putService(req, res, next) {
-  console.log(req.body);
   try {
     const service = await servicesService.updateService(req.params.publicId, req.body);
     res.json(service);

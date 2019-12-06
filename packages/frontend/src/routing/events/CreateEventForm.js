@@ -16,18 +16,12 @@ import { fetchBarbersAsync } from '../../data-layer/barbers/actions';
 import { fetchServicesAsync } from '../../data-layer/services/actions';
 import { selectServices } from '../../data-layer/services/selectors';
 import { eventsService } from '../../data-layer/events/EventsService';
+import { ElevationBox } from '../../ui/boxes/ElevationBox';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const Root = styled(Box)`
   width: 900px;
   margin: 100px auto;
-`;
-
-const ElevationBox = styled(Box)`
-  margin-left: 8px;
-  &:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
 `;
 
 type Props = {

@@ -9,6 +9,7 @@ import { App } from './App';
 import { BarbersList } from './barbers/BarbersList';
 import { ServicesList } from './services/ServicesList';
 import { CreateEventForm } from './events/CreateEventForm';
+import { FormTest } from './events/TestReduxForm';
 import { Test } from './test/Test';
 import { Login } from './auth/Login';
 import { SignUp } from './auth/SignUp';
@@ -42,7 +43,7 @@ export const RootRouter = withCookies((props: any) => {
           <DefaultRoute path="/services" component={ServicesList} exact />
           <DefaultRoute path="/barbers" component={BarbersList} exact />
           <DefaultRoute path="/" component={App} exact />
-          <DefaultRoute path="/test" component={Test} exact />
+          <DefaultRoute path="/test" component={FormTest} exact />
           {allCookies.token && <Redirect from="/login" to="/" exact />}
           <DefaultRoute path="/login" component={Login} exact />
           {allCookies.token && <Redirect from="/signup" to="/" exact />}

@@ -47,7 +47,6 @@ const deleteBarber = async id => {
 
 const updateBarber = async (id, args) => {
   try {
-    console.log(id, args);
     const { name, picture, description } = args;
     const barber = await findById(Barber, id);
     barber.name = name ? name : barber.name;
