@@ -80,10 +80,34 @@ const updateEvent = async (id, args, user) => {
   }
 };
 
+const fetchDoneServices = async () => {
+  const events = await Event.aggregate([
+    {
+      $lookup: {
+        from: 'services',
+        localField: 'service',
+        foreignField: '_id',
+        as: 'service',
+      },
+    },
+    {
+      $match: { status: 'done' },
+    },
+    {
+      $group: {
+        _id: '$service.name',
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+  return events;
+};
+
 module.exports = {
   fetchEvents,
   fetchEvent,
   createEvent,
   deleteEvent,
   updateEvent,
+  fetchDoneServices,
 };

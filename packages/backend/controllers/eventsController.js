@@ -72,6 +72,15 @@ async function deleteEvent(req, res, next) {
   }
 }
 
+async function getDoneServices(req, res, next) {
+  try {
+    const services = await eventsService.fetchDoneServices();
+    res.json(services);
+  } catch (error) {
+    next(error);
+  }
+}
+
 /**
  * Initialize routes of articles controller.
  */
@@ -85,5 +94,7 @@ router.post('/', auth, postEvent);
 router.put('/:publicId', auth, putEvent);
 
 router.delete('/:publicId', auth, deleteEvent);
+
+router.get('/services/done', getDoneServices);
 
 module.exports = router;
