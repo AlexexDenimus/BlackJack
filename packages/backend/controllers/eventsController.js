@@ -47,7 +47,7 @@ async function postEvent(req, res, next) {
 }
 
 /**
- UPDATE /barbers/:targetId
+ UPDATE /events/:targetId
  */
 
 async function putEvent(req, res, next) {
@@ -60,7 +60,7 @@ async function putEvent(req, res, next) {
 }
 
 /**
- DELETE /barbers/:targetId
+ DELETE /events/:targetId
  */
 
 async function deleteEvent(req, res, next) {
@@ -72,10 +72,29 @@ async function deleteEvent(req, res, next) {
   }
 }
 
+/**
+ DELETE /events/services/done
+ Function for bar chart
+ */
+
 async function getDoneServices(req, res, next) {
   try {
     const services = await eventsService.fetchDoneServices();
     res.json(services);
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ DELETE /events/barbers/done
+ Function for pie chart
+ */
+
+async function getDoneBarbers(req, res, next) {
+  try {
+    const barbers = await eventsService.fetchDoneBarbers();
+    res.json(barbers);
   } catch (error) {
     next(error);
   }
@@ -96,5 +115,7 @@ router.put('/:publicId', auth, putEvent);
 router.delete('/:publicId', auth, deleteEvent);
 
 router.get('/services/done', getDoneServices);
+
+router.get('/barbers/done', getDoneBarbers);
 
 module.exports = router;

@@ -5,6 +5,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import { withStyles } from '@material-ui/core/styles';
 import BarChart from './components/BarChart';
+import PieChart from './components/PieChart';
+import PriceBox from './components/PriceBox';
 
 const styles = {
   mainCard: {
@@ -12,6 +14,18 @@ const styles = {
   },
   graphField: {
     maxWidth: '650px',
+    flexGrow: '1',
+  },
+  flexField: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    width: '100%',
+    marginTop: '16px',
+  },
+  price: {
+    textAlign: 'center',
+    fontSize: '36px',
   },
 };
 
@@ -19,15 +33,31 @@ function Dashboard(props) {
   return (
     <Fragment>
       <Card mb="16px" className={props.classes.mainCard}>
-        <CardHeader title="Welcome to the administration" />
-        <CardContent>Lorem ipsum sic dolor amet...</CardContent>
+        <CardHeader title="Панель администратора" />
+        <CardContent>Анализ работы заведения</CardContent>
       </Card>
-      <Card className={props.classes.graphField}>
-        <CardHeader title="График популярности услуг" />
-        <CardContent>
-          <BarChart />
-        </CardContent>
-      </Card>
+      <div className={props.classes.flexField}>
+        <Card className={props.classes.graphField}>
+          <CardHeader title="График популярности услуг" />
+          <CardContent>
+            <BarChart />
+          </CardContent>
+        </Card>
+        <Card className={props.classes.graphField}>
+          <CardHeader title="График популярности барберов" />
+          <CardContent>
+            <PieChart />
+          </CardContent>
+        </Card>
+      </div>
+      <div className={props.classes.flexField}>
+        <Card className={props.classes.graphField}>
+          <CardHeader title="Всего заработано" />
+          <CardContent className={props.classes.price}>
+            <PriceBox />
+          </CardContent>
+        </Card>
+      </div>
     </Fragment>
   );
 }
