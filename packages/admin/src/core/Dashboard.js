@@ -1,5 +1,5 @@
 // in src/Dashboard.js
-import React, { Fragment } from 'react';
+import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -9,6 +9,10 @@ import PieChart from './components/PieChart';
 import PriceBox from './components/PriceBox';
 
 const styles = {
+  root: {
+    width: '80%',
+    margin: 'auto',
+  },
   mainCard: {
     marginBottom: '16px',
   },
@@ -31,7 +35,7 @@ const styles = {
 
 function Dashboard(props) {
   return (
-    <Fragment>
+    <div className={props.classes.root}>
       <Card mb="16px" className={props.classes.mainCard}>
         <CardHeader title="Панель администратора" />
         <CardContent>Анализ работы заведения</CardContent>
@@ -58,7 +62,7 @@ function Dashboard(props) {
           </CardContent>
         </Card>
       </div>
-    </Fragment>
+    </div>
   );
 }
 

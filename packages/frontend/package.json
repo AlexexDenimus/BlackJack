@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reach/dialog": "^0.6.3",
     "axios": "^0.19.0",
     "clean-tag": "^3.1.1",
     "date-fns": "^2.0.0-alpha.23",

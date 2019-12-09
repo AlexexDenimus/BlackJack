@@ -44,7 +44,6 @@ const BarChart = props => {
   const fetchBarData = useCallback(() => {
     API.get('events/services/done')
       .then(response => {
-        console.log(response);
         const data = {
           labels: response.data.map(value => {
             return value._id;

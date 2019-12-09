@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Flex, Box } from 'grid-styled';
@@ -18,6 +18,7 @@ import {
   BodyLight,
   Caption,
 } from '../ui/Typography';
+import { CreateEventModal } from './events/CreateEventModal';
 import '../utils/setupAxiosInterceptors';
 
 const Button = styled.button`
@@ -34,6 +35,7 @@ const Button = styled.button`
 
 export const App = withRouter((props: any) => {
   const { history } = props;
+  const [showModal, switchModal] = useState(false);
   const [cookies, , removeCookies] = useCookies(['token', 'user']);
   const handleLogout = () => {
     removeCookies('token', { path: '/' });
@@ -103,6 +105,13 @@ export const App = withRouter((props: any) => {
             <Button onClick={handleLogout}>Logout</Button>
           ) : (
             <Button onClick={redirectToLogin}>Login</Button>
+          )}
+          <Button onClick={() => switchModal(true)}>Modal</Button>
+          {showModal && (
+            <CreateEventModal
+              onDismiss={() => switchModal(false)}
+              showDialog={showModal}
+            ></CreateEventModal>
           )}
         </Flex>
       </header>

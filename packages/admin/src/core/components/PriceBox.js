@@ -31,7 +31,7 @@ const PriceBox = props => {
 
   return (
     <div className={props.classes.root}>
-      <h3>{price}</h3>
+      <h3>{price} рублей</h3>
     </div>
   );
 };
