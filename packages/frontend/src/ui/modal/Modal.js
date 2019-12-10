@@ -8,6 +8,7 @@ type Props = {
   children?: React.Node,
   showDialog: Boolean,
   onDismiss: () => void,
+  width: string,
 };
 
 export const Modal = (props: Props) => (
@@ -16,8 +17,12 @@ export const Modal = (props: Props) => (
     isOpen={props.showDialog}
     onDismiss={props.onDismiss}
   >
-    <DialogContent aria-labelledby="dialog">
+    <DialogContent aria-labelledby="dialog" style={{ padding: 0, width: `${props.width}` }}>
       <div id="dialog">{props.children}</div>
     </DialogContent>
   </DialogOverlay>
 );
+
+Modal.defaultProps = {
+  width: '50vw',
+};

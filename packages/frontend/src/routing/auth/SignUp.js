@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useRef } from 'react';
-import { Flex } from 'grid-styled';
+import { Flex } from 'rebass';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';

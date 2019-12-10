@@ -1,7 +1,7 @@
 //@flow
 
 import React, { useEffect, useState } from 'react';
-import { Box } from 'grid-styled';
+import { Box } from 'rebass';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import type { Dispatch } from 'redux';

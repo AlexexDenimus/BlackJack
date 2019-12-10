@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import type { Dispatch } from 'redux';
 import type { BarberDto } from '../../data-layer/barbers/types';
-import { Flex } from 'grid-styled';
+import { Flex } from 'rebass';
 import { BarberCard } from '../../ui/barbers/BarberCard';
 import { selectBarbers } from '../../data-layer/barbers/selectors';
 import { fetchBarbersAsync } from '../../data-layer/barbers/actions';

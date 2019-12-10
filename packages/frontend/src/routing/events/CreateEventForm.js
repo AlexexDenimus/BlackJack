@@ -1,7 +1,7 @@
 //@flow
 
 import React, { useEffect, useState } from 'react';
-import { Box, Flex } from 'grid-styled';
+import { Box, Flex } from 'rebass';
 import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
 import { addMonths, setMinutes, setHours } from 'date-fns';

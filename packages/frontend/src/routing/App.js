@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Flex, Box } from 'grid-styled';
+import { Flex, Box } from 'rebass';
 import { useCookies } from 'react-cookie';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';

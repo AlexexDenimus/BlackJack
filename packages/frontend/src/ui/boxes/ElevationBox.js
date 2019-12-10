@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Box } from 'grid-styled';
+import { Box } from 'rebass';
 
 export const ElevationBox = styled(Box)`
   margin-left: 8px;

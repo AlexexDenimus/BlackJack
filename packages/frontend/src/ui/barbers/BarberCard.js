@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { Flex } from 'grid-styled';
+import { Flex } from 'rebass';
 import styled from 'styled-components';
 import { width, height } from 'styled-system';
 
