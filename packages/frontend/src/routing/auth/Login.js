@@ -7,11 +7,6 @@ import { useCookies } from 'react-cookie';
 import { authService } from '../../data-layer/auth/AuthService';
 import { Header1 } from '../../ui/Typography';
 
-const Root = styled(Flex)`
-  width: 256px;
-  margin: auto;
-`;
-
 export const TextField = styled.input`
   border: 1px solid black;
 `;
@@ -33,13 +28,13 @@ export const Login = (props: any) => {
     setCookie('user', userId, { path: '/' });
   };
   return (
-    <Root flexDirection="column">
+    <Flex flexDirection="column" m="auto" width="256px">
       <Header1>Login</Header1>
       <form onSubmit={handleSubmit}>
         <TextField type="text" name="email" placeholder="Email" ref={emailRef} />
         <TextField type="password" name="password" placeholder="Password" ref={passwordRef} />
         <TextField type="submit" />
       </form>
-    </Root>
+    </Flex>
   );
 };

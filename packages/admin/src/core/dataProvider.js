@@ -79,6 +79,7 @@ const convertDataProviderRequestToHTTP = (type, resource, params) => {
  */
 const convertHTTPResponseToDataProvider = (response, type, resource, params) => {
   const { json } = response;
+  console.log(json);
   switch (type) {
     case GET_LIST:
       return {

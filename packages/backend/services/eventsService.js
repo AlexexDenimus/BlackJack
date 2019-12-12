@@ -24,13 +24,18 @@ const fetchEvent = async id => {
 };
 
 const createEvent = async (args, user) => {
-  const { date, serviceId, barberId } = args;
+  console.log(args);
+  const { date, services, barberId } = args;
 
-  const existingService = await findById(Service, serviceId);
+  services.map(async serviceId => {
+    const existingService = await findById(Service, serviceId);
 
-  if (!existingService) {
-    throw new Error('Service is not exist!');
-  }
+    if (!existingService) {
+      throw new Error('Service is not exist!');
+    }
+
+    serviceId = existingService._id;
+  });
 
   const existingBarber = await findById(Barber, barberId);
 
@@ -40,7 +45,7 @@ const createEvent = async (args, user) => {
 
   const newEvent = new Event({
     date: date,
-    service: existingService._id,
+    service: services,
     barber: existingBarber._id,
     user: user,
   });

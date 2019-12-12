@@ -11,10 +11,12 @@ const eventSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Barber',
     },
-    service: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Service',
-    },
+    service: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Service',
+      },
+    ],
     date: {
       type: Date,
       required: true,

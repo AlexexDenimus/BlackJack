@@ -6,6 +6,8 @@ import {
   DateInput,
   ReferenceInput,
   SelectInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from 'react-admin';
 
 export const EventEdit = props => (
@@ -16,9 +18,9 @@ export const EventEdit = props => (
       <ReferenceInput label="Barber" source="barber._id" reference="barbers">
         <SelectInput optionText="name" optionValue="_id" />
       </ReferenceInput>
-      <ReferenceInput label="Service" source="service._id" reference="services">
-        <SelectInput optionText="name" optionValue="_id" />
-      </ReferenceInput>
+      <ReferenceArrayInput label="Service" source="service._id" reference="services">
+        <SelectArrayInput optionText="name" optionValue="service._id" />
+      </ReferenceArrayInput>
       <DateInput source="date" />
       <SelectInput
         source="status"
