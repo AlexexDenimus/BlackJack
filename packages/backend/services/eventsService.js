@@ -19,7 +19,7 @@ const fetchEvents = async query => {
 };
 
 const fetchEvent = async id => {
-  const event = await Event.findAndPopulate(id);
+  const event = await findById(Event, id);
   return event;
 };
 

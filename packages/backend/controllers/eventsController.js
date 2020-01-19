@@ -38,7 +38,6 @@ async function getEvent(req, res, next) {
 
 async function postEvent(req, res, next) {
   try {
-    console.log(req.body);
     await eventsService.createEvent(req.body, req.user);
 
     res.sendStatus(httpStatus.NO_CONTENT);

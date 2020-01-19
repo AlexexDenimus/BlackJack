@@ -12,7 +12,7 @@ type Props = {
   previousPage: () => void,
 };
 
-const RadioInput = styled.input`
+const CheckBoxInput = styled.input`
   display: none;
   &:checked + label > div {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
@@ -23,12 +23,12 @@ const servicesPalette = ({ input, services, meta: { error, checked } }) => (
   <Fragment>
     {services.map(service => (
       <ElevationBox key={service.name}>
-        <RadioInput
+        <CheckBoxInput
           {...input}
-          type="radio"
+          type="checkbox"
           id={service.name}
           value={service.publicId}
-          name="service"
+          name={service.name}
         />
         <label htmlFor={service.name}>
           <div key={service.name}>
@@ -46,7 +46,13 @@ const ServicesForm = (props: Props) => {
   const { handleSubmit, services, previousPage } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <Field name="service" component={servicesPalette} services={services} />
+      <Field
+        name="service"
+        component={servicesPalette}
+        services={services}
+        // normalize={(value, q, w, e, r) => console.log(value, q, w, e, r)}
+        format={(q, w) => console.log(q, w)}
+      />
       <button type="button" onClick={previousPage}>
         Previous
       </button>
