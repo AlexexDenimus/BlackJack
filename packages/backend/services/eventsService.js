@@ -24,7 +24,6 @@ const fetchEvent = async id => {
 };
 
 const createEvent = async (args, user) => {
-  console.log(args);
   const { date, services, barberId } = args;
 
   services.map(async serviceId => {
@@ -51,6 +50,13 @@ const createEvent = async (args, user) => {
   });
 
   const result = await newEvent.save();
+
+  const userModel = await findById(User, user);
+  if (!userModel) {
+    throw new Error('User not found');
+  }
+  await userModel.createdEvents.push(newEvent);
+  await userModel.save();
 
   return result;
 };

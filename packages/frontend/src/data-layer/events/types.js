@@ -2,6 +2,6 @@
 
 export type EventForm = {
   date: Date,
-  serviceId: string,
+  services: string[],
   barberId: string,
 };
