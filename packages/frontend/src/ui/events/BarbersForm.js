@@ -1,7 +1,6 @@
 // @flow
 
-import React, { Fragment } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import type { BarberDto } from '../../data-layer/barbers/types';
 import { BarberCard } from '../barbers/BarberCard';
@@ -9,7 +8,7 @@ import { ElevationBox } from '../boxes/ElevationBox';
 
 type Props = {
   barbers: BarberDto[],
-  handleSubmit: () => void,
+  pickBarber: ({ id: string, name: string, src: string }) => void,
 };
 
 const RadioInput = styled.input`
@@ -19,55 +18,55 @@ const RadioInput = styled.input`
   }
 `;
 
-const barbersPalette = ({ input, barbers, meta: { error, checked } }) => (
-  <Fragment>
-    {barbers.map(barber => (
-      <ElevationBox key={barber.name}>
-        <RadioInput
-          {...input}
-          type="radio"
-          id={barber.name}
-          value={barber.publicId}
-          name="barber"
-        />
-        <label htmlFor={barber.name}>
-          <BarberCard
-            name={barber.name}
-            picture={barber.picture.src}
-            description={barber.description}
-            width="150px"
-            height="150px"
-          />
-        </label>
-      </ElevationBox>
-    ))}
-    {error && checked && <span>{error}</span>}
-  </Fragment>
-);
+export const BarbersForm = (props: Props) => {
+  const { pickBarber, barbers } = props;
+  const [selectedBarber, setSelectedBarber] = useState([]);
 
-const BarbersForm = (props: Props) => {
-  const { handleSubmit, barbers } = props;
+  const handleSubmit = event => {
+    event.preventDefault();
+    pickBarber({
+      id: selectedBarber[0],
+      name: selectedBarber[1],
+      src: selectedBarber[2] + selectedBarber[3],
+    });
+  };
+
+  const handleChange = event => {
+    setSelectedBarber([event.target.value][0].split(','));
+  };
+
   return (
     <form onSubmit={handleSubmit}>
-      <Field name="barber" component={barbersPalette} barbers={barbers} />
-      <div>
-        <button type="submit">Далее</button>
-      </div>
+      {barbers.map(barber => (
+        <ElevationBox key={barber.name}>
+          <RadioInput
+            type="radio"
+            id={barber.name}
+            value={[barber.publicId, barber.name, barber.picture.src]}
+            name="barber"
+            onChange={handleChange}
+          />
+          <label htmlFor={barber.name}>
+            <BarberCard
+              name={barber.name}
+              picture={barber.picture.src}
+              description={barber.description}
+              width="150px"
+              height="150px"
+            />
+          </label>
+        </ElevationBox>
+      ))}
+      {/* {error && checked && <span>{error}</span>} */}
+      <button type="submit">Далее</button>
     </form>
   );
 };
 
-const validate = value => {
-  const errors = {};
-  if (!value.barber) {
-    errors.barber = 'Выбирите одного из барберов';
-  }
-  return errors;
-};
-
-export default reduxForm({
-  form: 'event',
-  destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true,
-  validate,
-})(BarbersForm);
+// const validate = value => {
+//   const errors = {};
+//   if (!value.barber) {
+//     errors.barber = 'Выбирите одного из барберов';
+//   }
+//   return errors;
+// };

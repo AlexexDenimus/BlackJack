@@ -1,9 +1,10 @@
 // @flow
 
 import produce from 'immer';
-import { handleAction } from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import type { EventType } from './types';
 import type { SetEventType } from './actions';
+import type { SetBarber } from './actions';
 import * as actions from './actions';
 
 export type EventFormState = {
@@ -46,11 +47,16 @@ const initialState: EventFormState = {
   },
 };
 
-export const reducer = handleAction(
-  actions.setEventType.toString(),
-  (state: EventFormState, action: SetEventType) =>
-    produce(state, draft => {
-      draft.eventType = action.payload;
-    }),
+export const reducer = handleActions(
+  {
+    [actions.setEventType.toString()]: (state: EventFormState, action: SetEventType) =>
+      produce(state, draft => {
+        draft.eventType = action.payload;
+      }),
+    [actions.setBarber.toString()]: (state: EventFormState, action: SetBarber) =>
+      produce(state, draft => {
+        draft.barber = action.payload;
+      }),
+  },
   initialState,
 );
