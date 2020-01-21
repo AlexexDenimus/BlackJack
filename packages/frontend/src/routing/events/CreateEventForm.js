@@ -49,7 +49,7 @@ const enhance = connect(
 export const CreateEventForm = enhance((props: Props) => {
   const { barbers, services, onFetchServices, onFetchBarbers } = props;
   const [barberValue, setBarber] = useState('');
-  const [serviceValue, setService] = useState('');
+  const [serviceValue, setService] = useState([]);
   const [dateValue, setDate] = useState(new Date());
 
   useEffect(() => {
@@ -64,13 +64,13 @@ export const CreateEventForm = enhance((props: Props) => {
   };
 
   const handleServiceClick = service => {
-    setService(service);
+    setService([service]);
   };
 
   const handleSubmit = async () => {
     await eventsService.createEvent({
       date: dateValue,
-      serviceId: serviceValue,
+      services: serviceValue,
       barberId: barberValue,
     });
   };
@@ -91,7 +91,7 @@ export const CreateEventForm = enhance((props: Props) => {
             </ElevationBox>
           ))}
         {barberValue !== '' &&
-          serviceValue === '' &&
+          serviceValue === [] &&
           services.map(service => (
             <ElevationBox key={service.name} onClick={() => handleServiceClick(service.publicId)}>
               <div key={service.name}>
@@ -100,7 +100,7 @@ export const CreateEventForm = enhance((props: Props) => {
               </div>
             </ElevationBox>
           ))}
-        {barberValue !== '' && serviceValue !== '' && (
+        {barberValue !== '' && serviceValue !== [] && (
           <Box>
             <DatePicker
               selected={dateValue}

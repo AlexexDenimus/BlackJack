@@ -11,7 +11,6 @@ import { selectBarbers } from '../../data-layer/barbers/selectors';
 import { fetchBarbersAsync } from '../../data-layer/barbers/actions';
 import { fetchServicesAsync } from '../../data-layer/services/actions';
 import { selectServices } from '../../data-layer/services/selectors';
-import { eventsService } from '../../data-layer/events/EventsService';
 import BarbersForm from '../../ui/events/BarbersForm';
 import ServicesForm from '../../ui/events/ServicesForm';
 import DataForm from '../../ui/events/DataForm';
