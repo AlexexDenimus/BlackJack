@@ -5,6 +5,7 @@ import { handleActions } from 'redux-actions';
 import type { EventType } from './types';
 import type { SetEventType } from './actions';
 import type { SetBarber } from './actions';
+import type { SetServices } from './actions';
 import * as actions from './actions';
 
 export type EventFormState = {
@@ -18,6 +19,7 @@ export type EventFormState = {
     {
       id: string,
       name: string,
+      price: number,
     },
   ],
   date: Date,
@@ -38,6 +40,7 @@ const initialState: EventFormState = {
     {
       id: '',
       name: '',
+      price: 0,
     },
   ],
   date: new Date(),
@@ -56,6 +59,10 @@ export const reducer = handleActions(
     [actions.setBarber.toString()]: (state: EventFormState, action: SetBarber) =>
       produce(state, draft => {
         draft.barber = action.payload;
+      }),
+    [actions.setServices.toString()]: (state: EventFormState, action: SetServices) =>
+      produce(state, draft => {
+        draft.services = action.payload;
       }),
   },
   initialState,

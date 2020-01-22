@@ -6,10 +6,7 @@ import { Box } from 'rebass';
 import { useHistory } from 'react-router-dom';
 import type { EventType } from '../../data-layer/events/types';
 
-export const RegistrationType = (props: {
-  changeEventType: EventType => void,
-  setPage: number => void,
-}) => {
+const RegistrationType = (props: { changeEventType: EventType => void, nextPage: () => void }) => {
   const history = useHistory();
 
   const redirectToSignUp = () => {
@@ -18,7 +15,7 @@ export const RegistrationType = (props: {
 
   const chooseFastRegistration = () => {
     props.changeEventType('fast');
-    props.setPage(2);
+    props.nextPage();
   };
 
   return (
@@ -32,3 +29,5 @@ export const RegistrationType = (props: {
     </Fragment>
   );
 };
+
+export default RegistrationType;

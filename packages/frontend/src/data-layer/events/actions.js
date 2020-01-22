@@ -17,3 +17,18 @@ export const setBarber = createAction(
 );
 
 export type SetBarber = ActionType<typeof setBarber>;
+
+export const setServices = createAction(
+  '@event_form/SET_SERVICES',
+  (
+    services: [
+      {
+        id: string,
+        name: string,
+        price: number,
+      },
+    ],
+  ) => services,
+);
+
+export type SetServices = ActionType<typeof setServices>;

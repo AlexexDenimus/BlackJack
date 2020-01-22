@@ -9,6 +9,7 @@ import { ElevationBox } from '../boxes/ElevationBox';
 type Props = {
   barbers: BarberDto[],
   pickBarber: ({ id: string, name: string, src: string }) => void,
+  nextPage: () => void,
 };
 
 const RadioInput = styled.input`
@@ -18,8 +19,8 @@ const RadioInput = styled.input`
   }
 `;
 
-export const BarbersForm = (props: Props) => {
-  const { pickBarber, barbers } = props;
+const BarbersForm = (props: Props) => {
+  const { pickBarber, barbers, nextPage } = props;
   const [selectedBarber, setSelectedBarber] = useState([]);
 
   const handleSubmit = event => {
@@ -29,6 +30,7 @@ export const BarbersForm = (props: Props) => {
       name: selectedBarber[1],
       src: selectedBarber[2] + selectedBarber[3],
     });
+    nextPage();
   };
 
   const handleChange = event => {
@@ -62,6 +64,8 @@ export const BarbersForm = (props: Props) => {
     </form>
   );
 };
+
+export default BarbersForm;
 
 // const validate = value => {
 //   const errors = {};
