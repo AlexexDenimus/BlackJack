@@ -19,7 +19,7 @@ const PieChart = props => {
   const [pieData, setPieData] = useState({});
 
   const fetchPieData = useCallback(() => {
-    API.get('events/barbers/done')
+    API.get('events/done/barbers')
       .then(response => {
         const data = {
           labels: response.data.map(value => {

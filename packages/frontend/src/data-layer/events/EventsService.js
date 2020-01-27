@@ -15,6 +15,10 @@ export class EventsService implements IEventsService {
   createEvent(params: EventForm) {
     return this.client.postEvent(params);
   }
+
+  fetchBookedDates() {
+    return this.client.getBookedDates();
+  }
 }
 
 export const eventsService: IEventsService = new EventsService();

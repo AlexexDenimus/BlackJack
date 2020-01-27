@@ -32,3 +32,7 @@ export const setServices = createAction(
 );
 
 export type SetServices = ActionType<typeof setServices>;
+
+export const setDate = createAction('@event_form/SET_DATE', (date: Date) => date);
+
+export type SetDate = ActionType<typeof setDate>;

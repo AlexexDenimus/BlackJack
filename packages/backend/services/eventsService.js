@@ -144,6 +144,15 @@ const fetchDoneBarbers = async () => {
   return barbers;
 };
 
+const fetchBookedDates = async () => {
+  const todayDate = new Date();
+  return await Event.aggregate([
+    { $project: { date: 1 } },
+    { $match: { date: { $gte: todayDate } } },
+    { $group: { _id: '$date' } },
+  ]);
+};
+
 module.exports = {
   fetchEvents,
   fetchEvent,
@@ -152,4 +161,5 @@ module.exports = {
   updateEvent,
   fetchDoneServices,
   fetchDoneBarbers,
+  fetchBookedDates,
 };

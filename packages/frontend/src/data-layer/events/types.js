@@ -7,3 +7,5 @@ export type EventForm = {
 };
 
 export type EventType = 'fast' | 'default';
+
+export type BookedDates = [{ _id: Date }];

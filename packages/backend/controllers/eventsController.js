@@ -73,7 +73,7 @@ async function deleteEvent(req, res, next) {
 }
 
 /**
- DELETE /events/services/done
+ GET /events/done/services
  Function for bar chart
  */
 
@@ -87,7 +87,7 @@ async function getDoneServices(req, res, next) {
 }
 
 /**
- DELETE /events/barbers/done
+ GET /events/done/barbers
  Function for pie chart
  */
 
@@ -95,6 +95,21 @@ async function getDoneBarbers(req, res, next) {
   try {
     const barbers = await eventsService.fetchDoneBarbers();
     res.json(barbers);
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ GET /events/done/dates
+ Fetch booked dates
+ */
+
+async function getBookedDates(req, res, next) {
+  try {
+    const dates = await eventsService.fetchBookedDates();
+
+    res.json(dates);
   } catch (error) {
     next(error);
   }
@@ -114,8 +129,10 @@ router.put('/:publicId', auth, putEvent);
 
 router.delete('/:publicId', auth, deleteEvent);
 
-router.get('/services/done', getDoneServices);
+router.get('/done/services', getDoneServices);
 
-router.get('/barbers/done', getDoneBarbers);
+router.get('/done/barbers', getDoneBarbers);
+
+router.get('/done/dates', getBookedDates);
 
 module.exports = router;

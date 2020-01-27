@@ -13,7 +13,7 @@ const PriceBox = props => {
   const [price, setPrice] = useState(0);
 
   const fetchPrice = useCallback(() => {
-    API.get('events/services/done')
+    API.get('events/done/services')
       .then(response => {
         const newPrice = response.data.reduce(function(acc, value) {
           return acc + value.price;

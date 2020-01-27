@@ -10,7 +10,7 @@ import type { IEventsHttpClient } from './IEventsHttpClient';
 import type { BarbersMapper } from '../barbers/types';
 import type { ServicesMapper } from '../services/types';
 import type { UserDto } from '../users/types';
-import type { EventForm } from '../events/types';
+import type { EventForm, BookedDates } from '../events/types';
 import type { AuthForm, AuthResponse } from '../auth/types';
 
 export class HttpClient
@@ -78,6 +78,14 @@ export class HttpClient
     await this.transport.post('/api/events', { date, services, barberId });
 
     return;
+  }
+
+  async getBookedDates(): Promise<BookedDates> {
+    const response: any = await this.transport.get(`api/events/done/dates`);
+
+    const dates = response.data.map(value => value._id);
+
+    return dates;
   }
 }
 
