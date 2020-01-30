@@ -11,6 +11,7 @@ import { fetchBarbersAsync } from '../../data-layer/barbers/actions';
 import { selectBarbers } from '../../data-layer/barbers/selectors';
 import { fetchServicesAsync } from '../../data-layer/services/actions';
 import { selectServices } from '../../data-layer/services/selectors';
+import { selectEventType } from '../../data-layer/events/selectors';
 
 type DispatchProps = {
   changeEventType: EventType => void,
@@ -32,6 +33,7 @@ type DispatchProps = {
 type StateProps = {
   barbers: BarberDto[],
   services: ServiceDto[],
+  eventType: EventType,
   page: number,
   setPage: number => void,
 };
@@ -41,6 +43,7 @@ type ControllerProps = DispatchProps & StateProps;
 const mapStateToProps = state => ({
   barbers: selectBarbers(state),
   services: selectServices(state),
+  eventType: selectEventType(state),
 });
 
 function mapDispatchToProps(dispatch: Dispatch<*>) {
@@ -49,6 +52,7 @@ function mapDispatchToProps(dispatch: Dispatch<*>) {
     pickBarber: barber => dispatch(actions.setBarber(barber)),
     pickServices: services => dispatch(actions.setServices(services)),
     pickDate: date => dispatch(actions.setDate(date)),
+    setUser: user => dispatch(actions.setUser(user)),
     onFetchBarbers: () => dispatch(fetchBarbersAsync()),
     onFetchServices: () => dispatch(fetchServicesAsync()),
   };
@@ -63,19 +67,22 @@ const RegistrationType = React.lazy(() => import('../../ui/events/RegistrationTy
 const BarbersForm = React.lazy(() => import('../../ui/events/BarbersForm'));
 const ServicesForm = React.lazy(() => import('../../ui/events/ServicesForm'));
 const DateForm = React.lazy(() => import('../../ui/events/DateForm'));
+const UserForm = React.lazy(() => import('../../ui/events/UserForm'));
 
 export const CreateEventController = enhance((props: ControllerProps) => {
-  const [page, setPage] = useState(1);
-  const [bookedDates, setBookedDates] = useState([]);
   const [cookies] = useCookies();
+  const [page, setPage] = useState(cookies.user && cookies.token ? 2 : 1);
+  const [bookedDates, setBookedDates] = useState([]);
   const {
     barbers,
     services,
+    eventType,
     changeEventType,
     onFetchBarbers,
     pickBarber,
     pickServices,
     pickDate,
+    setUser,
     onFetchServices,
   } = props;
 
@@ -84,7 +91,6 @@ export const CreateEventController = enhance((props: ControllerProps) => {
     setBookedDates(dates);
   }, [setBookedDates]);
   useEffect(() => {
-    cookies.user && cookies.token ? setPage(2) : setPage(4);
     onFetchBarbers();
     onFetchServices();
     if (page === 4) fetchBookedDates();
@@ -118,6 +124,15 @@ export const CreateEventController = enhance((props: ControllerProps) => {
           excludeDates={bookedDates}
         />
       )}
+      {page === 5 && (
+        <UserForm
+          eventType={eventType}
+          previousPage={previousPage}
+          nextPage={nextPage}
+          setUser={setUser}
+        />
+      )}
+      {page === 6 && <div>End</div>}
     </Suspense>
   );
 });

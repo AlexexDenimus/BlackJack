@@ -7,6 +7,7 @@ import type { SetEventType } from './actions';
 import type { SetBarber } from './actions';
 import type { SetServices } from './actions';
 import type { SetDate } from './actions';
+import type { SetUser } from './actions';
 import * as actions from './actions';
 
 export type EventFormState = {
@@ -68,6 +69,10 @@ export const reducer = handleActions(
     [actions.setDate.toString()]: (state: EventFormState, action: SetDate) =>
       produce(state, draft => {
         draft.date = action.payload;
+      }),
+    [actions.setUser.toString()]: (state: EventFormState, action: SetUser) =>
+      produce(state, draft => {
+        draft.user = action.payload;
       }),
   },
   initialState,
