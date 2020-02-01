@@ -7,6 +7,18 @@ const eventSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
     },
+    alternativeUser: {
+      name: String,
+      phoneNumber: {
+        type: String,
+        validate: [
+          {
+            validator: value => /^((\+7)+([0-9]){10})$/.test(value),
+            msg: 'Format: +7-(999)-999-99-99',
+          },
+        ],
+      },
+    },
     barber: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Barber',

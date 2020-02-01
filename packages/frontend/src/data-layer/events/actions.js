@@ -39,7 +39,7 @@ export type SetDate = ActionType<typeof setDate>;
 
 export const setUser = createAction(
   '@event_form/SET_USER',
-  (user: { name: string, number: string }) => user,
+  (user: { name: string, phoneNumber: string }) => user,
 );
 
 export type SetUser = ActionType<typeof setUser>;

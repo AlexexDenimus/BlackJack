@@ -23,10 +23,10 @@ const fetchEvent = async id => {
   return event;
 };
 
-const createEvent = async (args, user) => {
-  const { date, services, barberId } = args;
+const createEvent = async args => {
+  const { date, services, barberId, user } = args;
 
-  services.map(async serviceId => {
+  const newServices = services.map(async serviceId => {
     const existingService = await findById(Service, serviceId);
 
     if (!existingService) {
@@ -42,23 +42,45 @@ const createEvent = async (args, user) => {
     throw new Error('Barber is not exist!');
   }
 
-  const newEvent = new Event({
-    date: date,
-    service: services,
-    barber: existingBarber._id,
-    user: user,
-  });
+  if (user.id) {
+    const existingUser = await findById(User, user.id);
 
-  const result = await newEvent.save();
+    if (!existingUser) {
+      throw new Error('User is not exist!');
+    }
 
-  const userModel = await findById(User, user);
-  if (!userModel) {
-    throw new Error('User not found');
+    const newEvent = new Event({
+      date: date,
+      service: newServices,
+      barber: existingBarber._id,
+      user: existingUser._id,
+    });
+
+    const result = await newEvent.save();
+
+    await existingUser.createdEvents.push(newEvent);
+    await existingUser.save();
+
+    return result;
+  } else {
+    if (!user) {
+      throw new Error('User is not exist!');
+    }
+
+    const newEvent = new Event({
+      date: date,
+      service: services,
+      barber: existingBarber._id,
+      alternativeUser: {
+        name: user.name,
+        phoneNumber: user.phoneNumber,
+      },
+    });
+
+    const result = await newEvent.save();
+
+    return result;
   }
-  await userModel.createdEvents.push(newEvent);
-  await userModel.save();
-
-  return result;
 };
 
 const deleteEvent = async (id, user) => {

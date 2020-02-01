@@ -27,7 +27,7 @@ export type EventFormState = {
   date: Date,
   user: {
     name: string,
-    number: string,
+    phoneNumber: string,
   },
 };
 
@@ -48,7 +48,7 @@ const initialState: EventFormState = {
   date: new Date(),
   user: {
     name: '',
-    number: '',
+    phoneNumber: '',
   },
 };
 

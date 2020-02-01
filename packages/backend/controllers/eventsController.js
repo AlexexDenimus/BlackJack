@@ -38,7 +38,7 @@ async function getEvent(req, res, next) {
 
 async function postEvent(req, res, next) {
   try {
-    await eventsService.createEvent(req.body, req.user);
+    await eventsService.createEvent(req.body);
 
     res.sendStatus(httpStatus.NO_CONTENT);
   } catch (err) {
@@ -123,7 +123,7 @@ router.get('/', getEvents);
 
 router.get('/:publicId', getEvent);
 
-router.post('/', auth, postEvent);
+router.post('/', postEvent);
 
 router.put('/:publicId', auth, putEvent);
 

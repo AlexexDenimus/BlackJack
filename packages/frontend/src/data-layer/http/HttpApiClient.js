@@ -73,9 +73,9 @@ export class HttpClient
   }
 
   async postEvent(payload: EventForm): Promise<void> {
-    const { date, services, barberId } = payload;
+    const { date, services, barberId, user } = payload;
 
-    await this.transport.post('/api/events', { date, services, barberId });
+    await this.transport.post('/api/events', { date, services, barberId, user });
 
     return;
   }

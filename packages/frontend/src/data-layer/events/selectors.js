@@ -1,3 +1,5 @@
 // @flow
 
-export const selectEventType = (state: ReduxState) => state.eventForm?.eventType;
+import type { RootState } from '../reducer';
+
+export const selectEventForm = (state: RootState) => state.eventForm;

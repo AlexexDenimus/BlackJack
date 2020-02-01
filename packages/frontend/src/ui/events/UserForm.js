@@ -7,18 +7,23 @@ type Props = {
   eventType: EventType,
   previousPage: () => void,
   nextPage: () => void,
+  setUser: ({ name: string, phoneNumber: string }) => void,
 };
 
 const UserForm = (props: Props) => {
   const { eventType, previousPage, nextPage, setUser } = props;
-  const nameField = useRef();
-  const phoneField = useRef();
+  const nameField = useRef<void | HTMLInputElement>();
+  const phoneField = useRef<void | HTMLInputElement>();
 
   const handleSubmit = event => {
     event.preventDefault();
     if (eventType === 'fast')
-      setUser({ name: nameField.current.value, number: phoneField.current.value });
-    console.log({ name: nameField.current.value, number: phoneField.current.value });
+      setUser({
+        // $FlowFixMe
+        name: nameField.current.value || 'User',
+        // $FlowFixMe
+        phoneNumber: phoneField.current.value || '+7',
+      });
     nextPage();
   };
 
@@ -26,7 +31,9 @@ const UserForm = (props: Props) => {
     <form onSubmit={handleSubmit}>
       {eventType === 'fast' ? (
         <div>
+          {/* $FlowFixMe */}
           <input type="text" placeholder="Введите ваше имя" ref={nameField} />
+          {/* $FlowFixMe */}
           <input type="tel" placeholder="Введите ваш номер телефона" ref={phoneField} />
         </div>
       ) : (
