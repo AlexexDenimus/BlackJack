@@ -1,15 +1,25 @@
 // @flow
 
-import React from 'react';
+import React, { useState } from 'react';
 import type { EventFormState } from '../../data-layer/events/reducer';
+// $FlowFixMe
+import { useHistory } from 'react-router-dom';
 
 type Props = {
   eventForm: EventFormState,
+  createEvent: boolean => void,
 };
 
 const ResultForm = (props: Props) => {
-  const { eventForm } = props;
-  console.log(eventForm);
+  const { eventForm, createEvent } = props;
+  const [notification, setNotification] = useState(false);
+  const history = useHistory();
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    createEvent(notification);
+    history.push('/');
+  };
 
   return (
     <div>
@@ -24,6 +34,13 @@ const ResultForm = (props: Props) => {
         {eventForm.services.reduce((current, previous) => current + previous.price, 0)}
       </p>
       <p>Дата записи: {eventForm.date.toString()}</p>
+      <form onSubmit={handleSubmit}>
+        <input id="notification" type="checkbox" onChange={value => setNotification(value)} />
+        <label htmlFor="notification">
+          Включить напоминание? Мы уведомим вас за час до стрижки
+        </label>
+        <input type="submit" value="Подтвердить заказ" />
+      </form>
     </div>
   );
 };

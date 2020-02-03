@@ -33,6 +33,11 @@ const eventSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
+    notification: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
     status: {
       type: String,
       enum: ['waiting', 'done', 'decline'],

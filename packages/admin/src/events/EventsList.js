@@ -11,12 +11,13 @@ import {
   ChipField,
 } from 'react-admin';
 import { EventsFilter } from './EventsFilter';
+import { UserNameField } from '../core/components/UserNameField';
 
 export const EventsList = props => {
   return (
     <List filters={<EventsFilter />} {...props}>
       <Datagrid>
-        <TextField source="user.name" label="UserName" sortable={false} />
+        <UserNameField sortable={false} />
         <TextField source="barber.name" label="Barber" sortable={false} />
         <ArrayField label="Services" source="service">
           <SingleFieldList>

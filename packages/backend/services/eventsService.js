@@ -24,7 +24,7 @@ const fetchEvent = async id => {
 };
 
 const createEvent = async args => {
-  const { date, services, barberId, user } = args;
+  const { date, services, barberId, user, notification } = args;
 
   const newServices = services.map(async serviceId => {
     const existingService = await findById(Service, serviceId);
@@ -54,6 +54,7 @@ const createEvent = async args => {
       service: newServices,
       barber: existingBarber._id,
       user: existingUser._id,
+      notification: notification ? true : false,
     });
 
     const result = await newEvent.save();

@@ -108,12 +108,13 @@ export const CreateEventController = enhance((props: ControllerProps) => {
     setPage(page - 1);
   };
 
-  const createEvent = async () => {
+  const createEvent = async notification => {
     await eventsService.createEvent({
       date: eventForm.date || new Date(),
       services: eventForm.services.map(value => value.id) || [],
       barberId: eventForm.barber.id || '',
       user: eventForm.user.name ? eventForm.user : { id: cookies.user },
+      notification,
     });
   };
 
@@ -145,7 +146,7 @@ export const CreateEventController = enhance((props: ControllerProps) => {
           setUser={setUser}
         />
       )}
-      {page === 6 && <ResultForm eventForm={eventForm} />}
+      {page === 6 && <ResultForm eventForm={eventForm} createEvent={createEvent} />}
     </Suspense>
   );
 });
