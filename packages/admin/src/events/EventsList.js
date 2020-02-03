@@ -15,7 +15,7 @@ import { UserNameField } from '../core/components/UserNameField';
 
 export const EventsList = props => {
   return (
-    <List filters={<EventsFilter />} {...props}>
+    <List filters={<EventsFilter />} sort={{ field: 'date', order: 'DESC' }} {...props}>
       <Datagrid>
         <UserNameField sortable={false} />
         <TextField source="barber.name" label="Barber" sortable={false} />

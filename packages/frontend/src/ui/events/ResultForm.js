@@ -35,7 +35,7 @@ const ResultForm = (props: Props) => {
       </p>
       <p>Дата записи: {eventForm.date.toString()}</p>
       <form onSubmit={handleSubmit}>
-        <input id="notification" type="checkbox" onChange={value => setNotification(value)} />
+        <input id="notification" type="checkbox" onChange={() => setNotification(!notification)} />
         <label htmlFor="notification">
           Включить напоминание? Мы уведомим вас за час до стрижки
         </label>

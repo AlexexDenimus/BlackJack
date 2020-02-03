@@ -24,17 +24,19 @@ const fetchEvent = async id => {
 };
 
 const createEvent = async args => {
+  console.log(args);
   const { date, services, barberId, user, notification } = args;
 
-  const newServices = services.map(async serviceId => {
+  const nativeServicesId = services.map(async serviceId => {
     const existingService = await findById(Service, serviceId);
 
     if (!existingService) {
       throw new Error('Service is not exist!');
     }
 
-    serviceId = existingService._id;
+    return existingService._id;
   });
+  const newServices = await Promise.all(nativeServicesId);
 
   const existingBarber = await findById(Barber, barberId);
 
@@ -68,14 +70,16 @@ const createEvent = async args => {
       throw new Error('User is not exist!');
     }
 
-    const newEvent = new Event({
+    console.log(newServices);
+    const newEvent = await new Event({
       date: date,
-      service: services,
+      service: newServices,
       barber: existingBarber._id,
       alternativeUser: {
         name: user.name,
         phoneNumber: user.phoneNumber,
       },
+      notification: notification ? true : false,
     });
 
     const result = await newEvent.save();
