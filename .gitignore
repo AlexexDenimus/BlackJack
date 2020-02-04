@@ -11,3 +11,4 @@ docker-compose.*
 .env
 
 node_modules/
+config/default.json
