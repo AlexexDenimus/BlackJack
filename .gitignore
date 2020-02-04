@@ -8,5 +8,6 @@ yarn-debug.log*
 yarn-error.log*
 test.log.*
 docker-compose.*
+.env
 
 node_modules/
