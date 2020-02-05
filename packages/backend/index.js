@@ -73,6 +73,16 @@ app.use('/api/events', events);
 const auth = require('./controllers/authController');
 app.use('/api/auth', auth);
 
+app.use(express.static('../frontend/build'));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'));
+});
+
+app.use(express.static('../admin/build'));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../admin', 'build', 'index.html'));
+});
+
 /**
  * Start Express server.
  */
