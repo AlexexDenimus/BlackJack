@@ -1,2 +1,2 @@
 [config]
-command = bush ./deploy.sh
+command = bash ./deploy.sh
