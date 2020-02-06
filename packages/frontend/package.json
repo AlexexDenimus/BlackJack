@@ -43,7 +43,7 @@
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
     "flow": "flow",
-    "rebuild": "npm rebuild --build-from-source"
+    "rebuild": "npm rebuild --build-from-source && npm install"
   },
   "browserslist": {
     "production": [

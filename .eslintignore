@@ -1,0 +1,7 @@
+
+**/node_modules/
+**/flow-typed/
+**/node_env/
+**/public/
+**/build/
+**/logs/
