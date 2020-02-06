@@ -21,6 +21,9 @@
     "url": "https://github.com/AlexexDenimus/BlackJack/issues"
   },
   "homepage": "https://github.com/AlexexDenimus/BlackJack",
+  "dependencies": {
+    "lerna": "^3.20.2"
+  },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
     "eslint": "^6.1.0",
@@ -33,7 +36,6 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
     "husky": "^3.0.5",
-    "lerna": "^3.20.2",
     "lint-staged": "^9.3.0",
     "prettier": "^1.18.2"
   },
