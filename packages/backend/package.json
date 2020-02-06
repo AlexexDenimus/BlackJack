@@ -7,7 +7,7 @@
     "test": "nyc mocha --timeout=10000 --exit",
     "lint": "eslint \"**/*.js\"",
     "precommit": "lint-staged",
-    "rebuild": "npm rebuild --build-from-source && npm install"
+    "rebuild": "npm rebuild --build-from-source"
   },
   "dependencies": {
     "@octokit/rest": "^16.28.2",
@@ -71,8 +71,8 @@
     "supertest": "^4.0.2"
   },
   "engines": {
-    "node": ">=8.16.0",
-    "npm": ">=6.4.1"
+    "node": "12.6.0",
+    "npm": "6.13.3"
   },
   "lint-staged": {
     "*.js": [
