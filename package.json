@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prettier": "prettier  — write packages/**/*.js",
     "build": "lerna run build --scope={frontend,admin}",
-    "start": "node index.js"
+    "start": "node index.js",
+    "rebuild": "lerna run rebuild"
   },
   "repository": {
     "type": "git",

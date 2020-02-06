@@ -42,7 +42,8 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
-    "flow": "flow"
+    "flow": "flow",
+    "rebuild": "npm rebuild --build-from-source"
   },
   "browserslist": {
     "production": [

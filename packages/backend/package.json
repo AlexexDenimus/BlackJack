@@ -6,7 +6,8 @@
     "start": "nodemon index.js",
     "test": "nyc mocha --timeout=10000 --exit",
     "lint": "eslint \"**/*.js\"",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "rebuild": "npm rebuild --build-from-source"
   },
   "dependencies": {
     "@octokit/rest": "^16.28.2",
