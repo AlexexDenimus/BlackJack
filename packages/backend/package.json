@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "backend with node.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon --exec 'node -r dotenv/config' --inspect index.js -e js,pug,mjml,json",
     "test": "nyc mocha --timeout=10000 --exit",
     "lint": "eslint \"**/*.js\"",
     "precommit": "lint-staged",

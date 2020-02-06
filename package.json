@@ -44,10 +44,6 @@
       "pre-commit": "lint-staged && npm run prettier"
     }
   },
-  "engines": {
-    "node": "10.14.1",
-    "npm": "6.4.1"
-  },
   "lint-staged": {
     "packages/frontend/*.js": [
       "eslint --fix",
