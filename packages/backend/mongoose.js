@@ -8,14 +8,13 @@ dotenv.config();
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.set('useNewUrlParser', true);
-mongoose.connect(process.env.MONGODB_URI);
-// mongoose.connect(process.env.DB_CONN, {
-//   dbName: 'barbershop',
-//   auth: { user: process.env.DB_USER, password: process.env.DB_PW },
-//   useNewUrlParser: true,
-//   retrywrites: false,
-// });
+// mongoose.set('useNewUrlParser', true);
+// mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.DB_CONN, {
+  dbName: 'barbershop',
+  useNewUrlParser: true,
+  retrywrites: false,
+});
 require('./models/Barber');
 require('./models/User');
 require('./models/Service');
