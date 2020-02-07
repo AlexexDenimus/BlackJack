@@ -71,7 +71,7 @@
     "supertest": "^4.0.2"
   },
   "engines": {
-    "node": "12.6.0",
+    "node": "8.10.0",
     "npm": "6.13.3"
   },
   "lint-staged": {
