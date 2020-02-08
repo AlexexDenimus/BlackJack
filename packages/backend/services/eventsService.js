@@ -24,7 +24,6 @@ const fetchEvent = async id => {
 };
 
 const createEvent = async args => {
-  console.log(args);
   const { date, services, barberId, user, notification } = args;
 
   const nativeServicesId = services.map(async serviceId => {

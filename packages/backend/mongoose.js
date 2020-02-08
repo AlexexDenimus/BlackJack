@@ -13,7 +13,6 @@ mongoose.set('useUnifiedTopology', true);
 mongoose.connect(process.env.DB_CONN, {
   dbName: 'barbershop',
   useNewUrlParser: true,
-  retrywrites: false,
 });
 require('./models/Barber');
 require('./models/User');
