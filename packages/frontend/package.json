@@ -7,6 +7,7 @@
     "@reach/dialog": "^0.6.3",
     "axios": "^0.19.0",
     "clean-tag": "^3.1.1",
+    "cross-env": "^7.0.0",
     "date-fns": "^2.0.0-alpha.23",
     "decimal.js": "^10.2.0",
     "faker": "^4.1.0",
@@ -38,7 +39,7 @@
     "styled-system": "^5.1.2"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "cross-env react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",

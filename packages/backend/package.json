@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "backend with node.js",
   "scripts": {
-    "start": "nodemon --exec 'node -r dotenv/config' --inspect index.js -e js,pug,mjml,json",
+    "start": "cross-env TZ='UTC' nodemon --exec 'node -r dotenv/config' --inspect index.js -e js,pug,mjml,json",
     "test": "nyc mocha --timeout=10000 --exit",
     "lint": "eslint \"**/*.js\"",
     "precommit": "lint-staged",
@@ -60,6 +60,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "cross-env": "^7.0.0",
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-chai-friendly": "^0.4.1",
