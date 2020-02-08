@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "bootstrap": "lerna bootstrap && lerna run rebuild",
-    "bootstrap:backend": "lerna bootstrap --ci --scope={backend}",
+    "bootstrap:backend": "lerna bootstrap --ci --scope '{backend}'",
     "prettier": "prettier  — write packages/**/*.js",
-    "prebuild": "lerna bootstrap --ci --scope={frontend,admin}",
+    "prebuild": "lerna bootstrap --ci --scope '{frontend,admin}'",
     "build": "lerna run build --scope={frontend,admin}",
     "start": "node index.js"
   },
