@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import type { BarberDto } from '../../data-layer/barbers/types';
 import { BarberCard } from '../barbers/BarberCard';
 import { ElevationBox } from '../boxes/ElevationBox';
+import validate from 'validate.js';
 
 type Props = {
   barbers: BarberDto[],
@@ -22,15 +23,21 @@ const RadioInput = styled.input`
 const BarbersForm = (props: Props) => {
   const { pickBarber, barbers, nextPage } = props;
   const [selectedBarber, setSelectedBarber] = useState([]);
+  const [error, setError] = useState('');
 
   const handleSubmit = event => {
     event.preventDefault();
-    pickBarber({
-      id: selectedBarber[0],
-      name: selectedBarber[1],
-      src: selectedBarber[2] + selectedBarber[3],
+    const validation = validate.single(selectedBarber, {
+      presence: { allowEmpty: false, message: 'Выберите барбера' },
     });
-    nextPage();
+    if (!validation) {
+      pickBarber({
+        id: selectedBarber[0],
+        name: selectedBarber[1],
+        src: selectedBarber[2] + selectedBarber[3],
+      });
+      nextPage();
+    } else setError(validation[0]);
   };
 
   const handleChange = event => {
@@ -59,7 +66,7 @@ const BarbersForm = (props: Props) => {
           </label>
         </ElevationBox>
       ))}
-      {/* {error && checked && <span>{error}</span>} */}
+      {error && <span>{error}</span>}
       <button type="submit">Далее</button>
     </form>
   );

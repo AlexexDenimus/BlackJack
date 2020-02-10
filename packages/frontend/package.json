@@ -36,7 +36,8 @@
     "redux-thunk": "^2.3.0",
     "rosie": "^2.0.1",
     "styled-components": "^4.4.0",
-    "styled-system": "^5.1.2"
+    "styled-system": "^5.1.2",
+    "validate.js": "^0.13.1"
   },
   "scripts": {
     "start": "cross-env react-app-rewired start",

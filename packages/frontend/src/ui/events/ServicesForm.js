@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import type { ServiceDto } from '../../data-layer/services/types';
 import { ElevationBox } from '../boxes/ElevationBox';
+import validate from 'validate.js';
 
 type Props = {
   services: ServiceDto[],
@@ -36,12 +37,18 @@ const normalizeServices = (services: any) => {
 
 const ServicesForm = (props: Props) => {
   const [selectedServices, setSelectedServices] = useState([]);
+  const [error, setError] = useState('');
   const { pickServices, services, previousPage, nextPage } = props;
 
   const handleSubmit = event => {
     event.preventDefault();
-    pickServices(normalizeServices(selectedServices));
-    nextPage();
+    const validation = validate.single(selectedServices, {
+      presence: { allowEmpty: false, message: 'Выберите хотя бы одну услугу' },
+    });
+    if (!validation) {
+      pickServices(normalizeServices(selectedServices));
+      nextPage();
+    } else setError(validation[0]);
   };
 
   const handleChange = event => {
@@ -74,7 +81,7 @@ const ServicesForm = (props: Props) => {
           </label>
         </ElevationBox>
       ))}
-      {/* {error && checked && <span>{error}</span>} */}
+      {error && <span>{error}</span>}
       <button type="button" onClick={previousPage}>
         Previous
       </button>
