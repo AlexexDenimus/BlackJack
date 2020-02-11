@@ -1,8 +1,9 @@
 // @flow
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Flex } from 'rebass';
 import styled from 'styled-components';
+import validate from 'validate.js';
 import { withRouter } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import { useCookies } from 'react-cookie';
@@ -17,16 +18,30 @@ export const SignUp = withRouter((props: any) => {
   const [, setCookie] = useCookies(['token', 'user']);
   const emailRef = useRef('');
   const passwordRef = useRef('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async event => {
     event.preventDefault();
-    await authService.signUpUser({
-      // $FlowFixMe
-      email: emailRef.current.value,
-      // $FlowFixMe
-      password: passwordRef.current.value,
+    // $FlowFixMe
+    const emailValidation = validate.single(emailRef.current.value, {
+      presence: { allowEmpty: false, message: 'Введите Email' },
+      email: { message: 'Email должен быть в формате example@mail.com' },
     });
-    props.history.push('/login');
+    // $FlowFixMe
+    const pwValidation = validate.single(passwordRef.current.value, {
+      presence: { allowEmpty: false, message: 'Введите пароль' },
+      length: { minimum: 6, tooShort: 'Пароль должен содержать 6 или более символов' },
+    });
+
+    if (!emailValidation && !pwValidation) {
+      await authService.signUpUser({
+        // $FlowFixMe
+        email: emailRef.current.value,
+        // $FlowFixMe
+        password: passwordRef.current.value,
+      });
+      props.history.push('/login');
+    } else emailValidation ? setError(emailValidation[0]) : setError(pwValidation[0]);
   };
 
   const googleSubmit = async response => {
@@ -59,6 +74,7 @@ export const SignUp = withRouter((props: any) => {
         <TextField type="password" name="password" placeholder="Password" ref={passwordRef} />
         <TextField type="submit" />
       </form>
+      {error && <span>{error}</span>}
     </Flex>
   );
 });
