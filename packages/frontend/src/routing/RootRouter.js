@@ -13,6 +13,7 @@ import { Login } from './auth/Login';
 import { SignUp } from './auth/SignUp';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../ui/theme';
+import { MainPage } from './main/MainPage';
 
 type DefaultRouteProps = {
   path: string,
@@ -40,7 +41,7 @@ export const RootRouter = withCookies((props: any) => {
           <DefaultRoute path="/booking" component={CreateEventController} exact />
           <DefaultRoute path="/services" component={ServicesList} exact />
           <DefaultRoute path="/barbers" component={BarbersList} exact />
-          <DefaultRoute path="/" component={App} exact />
+          <DefaultRoute path="/" component={MainPage} exact />
           {allCookies.token && <Redirect from="/login" to="/" exact />}
           <DefaultRoute path="/login" component={Login} exact />
           {allCookies.token && <Redirect from="/signup" to="/" exact />}

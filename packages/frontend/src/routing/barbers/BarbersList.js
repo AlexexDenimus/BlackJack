@@ -30,6 +30,8 @@ const enhance = connect(
 export const BarbersList = enhance((props: Props) => {
   const { barbers, onFetchBarbers } = props;
 
+  console.log(barbers);
+
   useEffect(() => {
     onFetchBarbers();
   }, [onFetchBarbers]);

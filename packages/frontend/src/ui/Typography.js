@@ -27,9 +27,15 @@ const textMixin = css`
 
 const Text = styled.p`
   ${textMixin}
-  margin: 0;
-  padding: 0;
 `;
+
+Text.defaultProps = {
+  marginBottom: 0,
+  marginLeft: 0,
+  marginRight: 0,
+  marginTop: 0,
+  padding: 0,
+};
 
 const Header = styled(Text).attrs({
   fontWeight: 1,
