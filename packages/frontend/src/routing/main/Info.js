@@ -8,7 +8,6 @@ import { Body, Header3, BodyLight } from '../../ui/Typography';
 const Card = styled(Flex)`
   width: 360px;
   height: 400px;
-  border: 1px solid black;
 `;
 
 const FirstCard = styled(Card)`
