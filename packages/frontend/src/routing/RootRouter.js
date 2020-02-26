@@ -38,6 +38,7 @@ export const RootRouter = withCookies((props: any) => {
       <BrowserRouter>
         <Switch>
           {/* Put new routes here */}
+          <DefaultRoute path="/test" component={App} exact />
           <DefaultRoute path="/booking" component={CreateEventController} exact />
           <DefaultRoute path="/services" component={ServicesList} exact />
           <DefaultRoute path="/barbers" component={BarbersList} exact />

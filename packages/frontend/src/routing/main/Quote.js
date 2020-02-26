@@ -2,7 +2,6 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { Flex } from 'rebass';
 import { Header1, Header3 } from '../../ui/Typography';
 
 const Background = styled.div`
