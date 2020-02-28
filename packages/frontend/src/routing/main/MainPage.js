@@ -8,6 +8,8 @@ import { Prices } from './Prices';
 import { Quote } from './Quote';
 import { Team } from './Team';
 import { Discount } from './Discount';
+import { Feedback } from './Feedback';
+import { Map } from './Map';
 
 const Main = styled.div`
   height: 100vh;
@@ -32,6 +34,12 @@ export const MainPage = () => (
     </section>
     <section>
       <Discount />
+    </section>
+    <section>
+      <Feedback />
+    </section>
+    <section>
+      <Map />
     </section>
   </Main>
 );
