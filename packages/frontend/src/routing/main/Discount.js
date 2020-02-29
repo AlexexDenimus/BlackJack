@@ -22,6 +22,11 @@ const Button = styled.button`
   width: 200px;
   font-weight: 700;
   font-size: 12px;
+  cursor: pointer;
+
+  &:hover {
+    color: #e3871d;
+  }
 `;
 
 export const Discount = () => (

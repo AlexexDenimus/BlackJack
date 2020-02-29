@@ -20,16 +20,16 @@ export const MainPage = () => (
     <section>
       <Hero />
     </section>
-    <section>
+    <section id="about">
       <Info />
     </section>
-    <section>
+    <section id="prices">
       <Prices />
     </section>
     <section>
       <Quote />
     </section>
-    <section>
+    <section id="team">
       <Team />
     </section>
     <section>
@@ -38,7 +38,7 @@ export const MainPage = () => (
     <section>
       <Feedback />
     </section>
-    <section>
+    <section id="map">
       <Map />
     </section>
   </Main>

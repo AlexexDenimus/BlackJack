@@ -33,6 +33,13 @@ const Button = styled.button`
   width: 300px;
   align-self: flex-end;
   font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    background: #e3871d;
+    border: none;
+    padding: 24px;
+  }
 `;
 
 const SecondCard = styled(Card)`
