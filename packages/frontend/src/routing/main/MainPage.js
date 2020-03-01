@@ -9,7 +9,7 @@ import { Quote } from './Quote';
 import { Team } from './Team';
 import { Discount } from './Discount';
 import { Feedback } from './Feedback';
-import { Map } from './Map';
+import { Contacts } from './Contacts';
 
 const Main = styled.div`
   height: 100vh;
@@ -39,7 +39,7 @@ export const MainPage = () => (
       <Feedback />
     </section>
     <section id="map">
-      <Map />
+      <Contacts />
     </section>
   </Main>
 );

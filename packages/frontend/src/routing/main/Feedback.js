@@ -74,6 +74,20 @@ const Link = styled.a`
   text-decoration: underline blue;
 `;
 
+const PrevArrow = styled.button`
+  &:before {
+    content: '' !important;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/PjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+PGc+PHBhdGggZD0iTTM4Ni4wMzMsNDk1LjIyOEwxNDYuODA2LDI1NS45OThMMzg2LjAzMywxNi43NzFjMy44MzgtMy44MzgsMy44MzgtMTAuMDU1LDAtMTMuODkzYy0zLjgzOC0zLjgzOC0xMC4wNTUtMy44MzgtMTMuODkzLDBMMTI1Ljk2NywyNDkuMDUxYy0zLjgzOCwzLjgzOC0zLjgzOCwxMC4wNTUsMCwxMy44OTNMMzcyLjE0LDUwOS4xMjJjMS45MTksMS45MTksNC40MzMsMi44NzgsNi45NDYsMi44NzhzNS4wMjgtMC45Niw2Ljk0Ni0yLjg3OUMzODkuODcxLDUwNS4yODQsMzg5Ljg3MSw0OTkuMDY2LDM4Ni4wMzMsNDk1LjIyOHoiLz48L2c+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjwvc3ZnPg==) !important;
+  }
+`;
+
+const NextArrow = styled.button`
+  &:before {
+    content: '' !important;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/PjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+PGc+PHBhdGggZD0iTTM4Ni4wMzUsMjQ5LjA1NkwxMzkuODU4LDIuODc4Yy0zLjgzOC0zLjgzOC0xMC4wNTUtMy44MzgtMTMuODkzLDBzLTMuODM4LDEwLjA1NSwwLDEzLjg5M2wyMzkuMjMxLDIzOS4yMzFMMTI1Ljk2NSw0OTUuMjI5Yy0zLjgzOCwzLjgzOC0zLjgzOCwxMC4wNTUsMCwxMy44OTNjMS45MTksMS45MTksNC40MzMsMi44NzgsNi45NDYsMi44NzhzNS4wMjgtMC45Niw2Ljk0Ni0yLjg3OGwyNDYuMTc4LTI0Ni4xNzNjMS44NDItMS44NDIsMi44NzgtNC4zNDIsMi44NzgtNi45NDZDMzg4LjkxNCwyNTMuMzk4LDM4Ny44NzcsMjUwLjg5OCwzODYuMDM1LDI0OS4wNTZ6Ii8+PC9nPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48L3N2Zz4=) !important;
+  }
+`;
+
 export const Feedback = () => (
   <Root flexDirection="column">
     <Header1>ЧТО ГОВОРЯТ НАШИ КЛИЕНТЫ</Header1>
@@ -97,7 +111,14 @@ export const Feedback = () => (
       <br />
       Если вам не понравиться наша работа - можете не платить.
     </BodyLight>
-    <Carousel dots slidesToShow={2} autoplay autoplaySpeed={5000}>
+    <Carousel
+      dots
+      slidesToShow={2}
+      autoplay
+      autoplaySpeed={5000}
+      prevArrow={<PrevArrow>Prev</PrevArrow>}
+      nextArrow={<NextArrow>Next</NextArrow>}
+    >
       {comments.map(comment => (
         <Comment text={comment.text} author={comment.author} />
       ))}

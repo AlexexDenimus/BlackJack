@@ -104,6 +104,7 @@ const ParallaxStyled = styled(Parallax)`
     filter: brightness(0.5) !important;
     top: 10%;
     height: 1000px !important;
+    width: 100vw !important;
   }
 `;
 

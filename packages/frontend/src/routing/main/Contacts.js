@@ -3,15 +3,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Flex } from 'rebass';
+import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import { Header2, Header4 } from '../../ui/Typography';
 import { HorizontalLine } from '../../ui/boxes/HorizontalLine';
 
 const Root = styled.div`
   position: relative;
   height: 575px;
+  width: 100vw;
 `;
 
-const Contacts = styled(Flex)`
+const ContactsEl = styled(Flex)`
+  z-index: 3;
   position: absolute;
   top: 95px;
   left: 270px;
@@ -28,9 +31,21 @@ const InstagramImage = styled.img`
   margin: 16px 0;
 `;
 
-export const Map = () => (
+export const Contacts = () => (
   <Root>
-    <Contacts flexDirection="column" alignItems="center">
+    <YMaps>
+      <Map
+        width="100%"
+        height="100%"
+        defaultState={{
+          center: [55.692348, 37.576633],
+          zoom: 17,
+        }}
+      >
+        <Placemark geometry={[55.692348, 37.576633]} />
+      </Map>
+    </YMaps>
+    <ContactsEl flexDirection="column" alignItems="center">
       <Header2 marginBottom="8px" color="white">
         КОНТАКТЫ
       </Header2>
@@ -48,6 +63,6 @@ export const Map = () => (
       </Header4>
       <HorizontalLine width="85px" />
       <InstagramImage alt="inst" src="/assets/main/inst.svg" />
-    </Contacts>
+    </ContactsEl>
   </Root>
 );
